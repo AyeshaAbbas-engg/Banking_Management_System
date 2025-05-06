@@ -8,8 +8,8 @@ namespace WindowsFormsApp1.Domain
 {
     public class Customer : User
     {
-        public Customer(int id, string username, string email, string passwordHash)
-            : base(id, username, email, passwordHash) { }
+        public Customer( string username, string email, string passwordHash,string phone)
+            : base(username, email, passwordHash, phone) { }
         public override string GetRole()
         {
             return "Customer";

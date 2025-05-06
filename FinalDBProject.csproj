@@ -103,10 +103,12 @@
   <ItemGroup>
     <Compile Include="BL\Accountdetailbl.cs" />
     <Compile Include="BL\BranchBL.cs" />
+    <Compile Include="BL\EmployeeBL.cs" />
     <Compile Include="BL\UserBL.cs" />
     <Compile Include="DatabaseHelper.cs" />
     <Compile Include="DL\AccountDetailDl.cs" />
     <Compile Include="DL\BranchDL.cs" />
+    <Compile Include="DL\EmployeeDL.cs" />
     <Compile Include="DL\UserDL.cs" />
     <Compile Include="Domain\Bank.cs" />
     <Compile Include="Domain\Branch.cs" />
@@ -136,6 +138,12 @@
     <Compile Include="UI\AddBranch.Designer.cs">
       <DependentUpon>AddBranch.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\AddEmployee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\AddEmployee.Designer.cs">
+      <DependentUpon>AddEmployee.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\BankHeadForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -153,6 +161,18 @@
     </Compile>
     <Compile Include="UI\CustomerDetails.Designer.cs">
       <DependentUpon>CustomerDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\EditEmployee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\EditEmployee.Designer.cs">
+      <DependentUpon>EditEmployee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Employee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Employee.Designer.cs">
+      <DependentUpon>Employee.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\LoginPage.cs">
       <SubType>Form</SubType>
@@ -185,6 +205,9 @@
     <EmbeddedResource Include="UI\AddBranch.resx">
       <DependentUpon>AddBranch.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\AddEmployee.resx">
+      <DependentUpon>AddEmployee.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\BankHeadForm.resx">
       <DependentUpon>BankHeadForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -193,6 +216,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\CustomerDetails.resx">
       <DependentUpon>CustomerDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\EditEmployee.resx">
+      <DependentUpon>EditEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Employee.resx">
+      <DependentUpon>Employee.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\LoginPage.resx">
       <DependentUpon>LoginPage.cs</DependentUpon>

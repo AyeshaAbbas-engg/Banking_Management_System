@@ -33,15 +33,15 @@ namespace WindowsFormsApp1.BL
                 string pass = password;
                 string role = row["Value_"].ToString();
 
-                if (role == "Head")
-                    return new Head(id, uname, email, pass);
-                else if (role == "Manager")
-                    return new Manager(id, uname, email, pass);
-                else if (role == "Employee")
-                    return new Employee(id, uname, email, pass);
-                else if (role == "Customer")
-                    return new Customer(id, uname, email, pass);
-            //}
+            //    if (role == "Head")
+            //        return new Head(id, uname, email, pass);
+            //    else if (role == "Manager")
+            //        return new Manager(id, uname, email, pass);
+            //    else if (role == "Employee")
+            //        return new Employee(id, uname, email, pass);
+            //    else if (role == "Customer")
+            //        return new Customer(id, uname, email, pass);
+            ////}
 
             return null;
         }

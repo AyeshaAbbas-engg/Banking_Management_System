@@ -8,8 +8,8 @@ namespace WindowsFormsApp1.Domain
 {
     public  class Head:User
     {
-        public Head(int id, string username, string email, string passwordHash)
-        : base(id, username, email, passwordHash) { }
+        //public Head(int id, string username, string email, string passwordHash)
+        //: base(id, username, email, passwordHash) { }
 
         public override string GetRole()
         {
