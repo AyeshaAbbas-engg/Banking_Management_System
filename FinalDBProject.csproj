@@ -132,6 +132,12 @@
     <Compile Include="UI\AccountDetails.Designer.cs">
       <DependentUpon>AccountDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\AddBfrmcs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\AddBfrmcs.Designer.cs">
+      <DependentUpon>AddBfrmcs.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\AddBranch.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -161,6 +167,12 @@
     </Compile>
     <Compile Include="UI\CustomerDetails.Designer.cs">
       <DependentUpon>CustomerDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\EditBranch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\EditBranch.Designer.cs">
+      <DependentUpon>EditBranch.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\EditEmployee.cs">
       <SubType>Form</SubType>
@@ -202,6 +214,9 @@
     <EmbeddedResource Include="UI\AccountDetails.resx">
       <DependentUpon>AccountDetails.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\AddBfrmcs.resx">
+      <DependentUpon>AddBfrmcs.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\AddBranch.resx">
       <DependentUpon>AddBranch.cs</DependentUpon>
     </EmbeddedResource>
@@ -216,6 +231,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\CustomerDetails.resx">
       <DependentUpon>CustomerDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\EditBranch.resx">
+      <DependentUpon>EditBranch.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\EditEmployee.resx">
       <DependentUpon>EditEmployee.cs</DependentUpon>
