@@ -11,30 +11,16 @@ using WindowsFormsApp1.DL;
 
 namespace WindowsFormsApp1.UI
 {
-    public partial class Employee : Form
+    public partial class AssignManager : Form
     {
-        public Employee()
+        public AssignManager()
         {
             InitializeComponent();
-        }
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void Employee_Load(object sender, EventArgs e)
-        {
             LoadActiveEmployees();
         }
-        public  void LoadActiveEmployees()
+        public void LoadActiveEmployees()
         {
-            string query = $"SELECT EmployeeID, Employee.Name, Employee.Email, Employee.Phone, Branch.BranchName , Employee.Status FROM Employee JOIN Branch ON Employee.BranchID = Branch.BranchID WHERE Employee.Status in ('Active' , 'Inactive');\r\n";
+            string query = $"SELECT E.EmployeeID,E.Name,E.Email, B.BranchName, IFNULL(M.Name, 'No Manager') AS ManagerName FROM Employee E JOIN  Branch B ON E.BranchID = B.BranchID LEFT JOIN  Employee M ON M.EmployeeID = E.ManagerID WHERE E.Status = 'Active'";
 
             DataTable dt = DataBaseHelper.GetData(query);
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;  // fill the grid
@@ -59,17 +45,12 @@ namespace WindowsFormsApp1.UI
             dataGridView1.DataSource = dt;
 
         }
-        private void button1_Click(object sender, EventArgs e)
-        {
-            AddEmployee add = new AddEmployee(this);
-            add.ShowDialog();
-        }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Please select a row to update.", "No Row Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please select a row to Corrosponding you want to Assign Manager .", "No Row Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -77,38 +58,18 @@ namespace WindowsFormsApp1.UI
             {
 
                 int selectedEmployeeId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["EmployeeID"].Value);
+                 string selectedBranchID = dataGridView1.SelectedRows[0].Cells["BranchName"].Value.ToString();
 
-                EditEmployee edit = new EditEmployee(this, selectedEmployeeId);
-                edit.ShowDialog();
-            }
-                
-            
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            if (dataGridView1.SelectedRows.Count > 0)
-            {
-                int id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["EmployeeID"].Value);
-
-                DialogResult result = MessageBox.Show($"Are you sure you want to delete Employee ID: {id}?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (result == DialogResult.Yes)
-                {
-                    EmployeeDL.SoftDelete(id);
-                   MessageBox.Show("Employee Deleted Successfully");
-                    LoadActiveEmployees();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Please select a row first.");
+                EmployeeDL.AssignManager(selectedEmployeeId, selectedBranchID);
+                MessageBox.Show("Manager Assigned Successfully");
+                LoadActiveEmployees();
             }
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
-
+            RemoveManager rm = new RemoveManager(this);
+            rm.ShowDialog();
         }
     }
 }

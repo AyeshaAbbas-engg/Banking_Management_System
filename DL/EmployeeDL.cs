@@ -13,7 +13,6 @@ namespace WindowsFormsApp1.DL
     {
         public static void AddEmployeetouser(EmployeeBL e)
         {
-
          string insertUserQuery = $"INSERT INTO Users (UserName, Email, Password_Hash, RoleID) VALUES ('{e.UserName}', '{e.Email}', '{e.PasswordHash}', {3});";
           DataBaseHelper.Instance.Update(insertUserQuery);
         }
@@ -33,14 +32,34 @@ namespace WindowsFormsApp1.DL
         }
         public static void UpdateEmployee(EmployeeBL e)
         {
-            string updateEmployeeQuery = $"UPDATE Employee SET Name = '{e.UserName}', Email = '{e.Email}',RoleID ={3}, Phone = '{e.phone}', BranchID = {e.branch} WHERE UserID = {e.userID};";
+            string updateEmployeeQuery = $"UPDATE Employee SET Name = '{e.UserName}', Email = '{e.Email}',RoleID ={3}, Phone = '{e.phone}', BranchID = {e.branch} , Status ='{e.status}' WHERE UserID = {e.userID};";
             DataBaseHelper.Instance.Update(updateEmployeeQuery);
         }
         public static void SoftDelete(int id)
         {
-            string softDeleteQuery = $"UPDATE Employee SET Status = 'Inactive' WHERE EmployeeID = {id};";
+            string softDeleteQuery = $"UPDATE Employee SET Status = 'Delete' WHERE EmployeeID = {id};";
             DataBaseHelper.Instance.Update(softDeleteQuery);
 
+        }
+        public static void SoftDeleteManager(int id)
+        {
+            string softDeleteQuery = $"UPDATE Employee SET ManagerID = Null WHERE BranchID = {id};";
+            DataBaseHelper.Instance.Update(softDeleteQuery);
+
+        }
+        public static int getBranchID(string bid)
+        {
+            string query = $"SELECT BranchID FROM Branch WHERE BranchName = '{bid}';";
+            DataTable userIdTable = DataBaseHelper.GetData(query);
+            int latestUserId = Convert.ToInt32(userIdTable.Rows[0][0]);
+            return latestUserId;
+
+        }
+        public static void AssignManager(int managerId,string BranchID)
+        {
+
+            string assignManagerQuery = $"UPDATE Employee SET ManagerID = {managerId} WHERE BranchID = {getBranchID(BranchID)};";
+            DataBaseHelper.Instance.Update(assignManagerQuery);
         }
     }
 }

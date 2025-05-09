@@ -14,6 +14,7 @@ namespace WindowsFormsApp1.Domain
         {
             return "Customer";
         }
+
     }
    
 }

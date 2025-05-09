@@ -8,9 +8,9 @@ using MySql.Data.MySqlClient;
 
 namespace WindowsFormsApp1
 {
-    
-    
-        class DataBaseHelper
+
+
+    class DataBaseHelper
     {
         private String serverName = "127.0.0.1";
         private String port = "3306";
@@ -96,11 +96,21 @@ namespace WindowsFormsApp1
             }
 
         }
+        public object ExecuteScalar(string query)
+        {
+            using (var connection = getConnection())
+            {
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    return command.ExecuteScalar();
+                }
+            }
+        }
+
 
 
     }
-    
-}
 
+}
 
 

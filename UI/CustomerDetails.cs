@@ -8,14 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Org.BouncyCastle.Tls.Crypto;
+using WindowsFormsApp1.BL;
+using WindowsFormsApp1.DL;
 
 namespace WindowsFormsApp1.UI
 {
     public partial class CustomerDetails : Form
     {
+        public int id;
         
         public CustomerDetails()
         {
+            
 
             InitializeComponent();
             
@@ -25,12 +29,44 @@ namespace WindowsFormsApp1.UI
         {
 
         }
+        private void PopulateBranchComboBox()
+        {
+            string query = "SELECT BranchID, BranchName FROM branch";
+            DataTable dt = DataBaseHelper.GetData(query);
+
+            comboBox1.DataSource = dt;
+            comboBox1.DisplayMember = "BranchName";  
+            comboBox1.ValueMember = "BranchID";      
+        }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            CustomerBL c= new CustomerBL(textBox1.Text, textBox2.Text, textBox6.Text, textBox4.Text, textBox3.Text,textBox5.Text, dateTimePicker1.Value.Date,Convert.ToInt32 (comboBox1.SelectedValue));
+            CustomerDL.AddCustomertouser(c);
+            
+         
+            CustomerDL.AddCustomer(c);
+            id = CustomerDL.latestID();
             this.Hide();
-            AccountDetails acc = new AccountDetails();
+            Account acc = new Account(id);
             acc.Show();
+
+        }
+
+        private void CustomerDetails_Load(object sender, EventArgs e)
+        {
+            PopulateBranchComboBox();
+            dateTimePicker1.Format = DateTimePickerFormat.Custom;
+            dateTimePicker1.CustomFormat = "yyyy-MM-dd";
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
 
         }
     }
