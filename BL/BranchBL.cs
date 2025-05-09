@@ -12,31 +12,31 @@ namespace WindowsFormsApp1.BL
 
     public  class BranchBL
     {
-        //public int BranchID { get; set; }
-        //public string BranchName { get; set; }
-        //public string Contact { get; set; }
-        //public string Address { get; set; }
-        //public string Status { get; set; }
-        //public int BankCode { get; set; }
-        //public BranchBL(int branchID, string branchName, string contact, string address, string status, int bankCode)
-        //{
-        //    BranchID = branchID;
-        //    BranchName = branchName;
-        //    Contact = contact;
-        //    Address = address;
-        //    Status = status;
-        //    BankCode = bankCode;
-            
-        //}
+        public int BranchID { get; set; }
+        public string BranchName { get; set; }
+        public string Contact { get; set; }
+        public string Address { get; set; }
+        public string Status { get; set; }
+        public int BankCode { get; set; }
+        public BranchBL( string branchName, string contact, string address, string status, int bankCode)
+        {
+           
+            BranchName = branchName;
+            Contact = contact;
+            Address = address;
+            Status = status;
+            BankCode = bankCode;
+
+        }
 
         public static bool AddBranch(string branchName, string contact, string address, string status, int bankCode)
         {
             return BranchDL.CreateBranch(branchName, contact, address, status, bankCode) > 0;
         }
-
-        public static bool UpdateBranch(int branchID, string branchName, string contact, string address, string status, int bankCode)
+        
+        public static bool UpdateBranch(int branchID, string branchName, string contact, string address, string status)
         {
-            return BranchDL.UpdateBranch(branchID, branchName, contact, address, status, bankCode) > 0;
+            return BranchDL.UpdateBranch(branchID, branchName, contact, address, status) > 0;
         }
 
         public static bool DeleteBranch(int branchID)
