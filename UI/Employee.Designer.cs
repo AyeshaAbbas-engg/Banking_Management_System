@@ -71,6 +71,7 @@
             this.dataGridView1.RowTemplate.Height = 28;
             this.dataGridView1.Size = new System.Drawing.Size(1286, 251);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // tableLayoutPanel2
             // 
@@ -89,9 +90,9 @@
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 5;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.26994F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15.33742F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.680982F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 43.86503F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40.79755F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(1292, 326);
@@ -108,7 +109,7 @@
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(100, 34);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(100, 44);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // button3
@@ -117,7 +118,7 @@
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.Location = new System.Drawing.Point(3, 3);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(94, 28);
+            this.button3.Size = new System.Drawing.Size(94, 38);
             this.button3.TabIndex = 0;
             this.button3.Text = "DELETE";
             this.button3.UseVisualStyleBackColor = true;
@@ -133,7 +134,7 @@
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(104, 34);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(104, 44);
             this.tableLayoutPanel4.TabIndex = 1;
             // 
             // button2
@@ -142,7 +143,7 @@
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.Location = new System.Drawing.Point(3, 3);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(98, 28);
+            this.button2.Size = new System.Drawing.Size(98, 38);
             this.button2.TabIndex = 0;
             this.button2.Text = "UPDATE";
             this.button2.UseVisualStyleBackColor = true;
@@ -158,7 +159,7 @@
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(96, 34);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(96, 44);
             this.tableLayoutPanel5.TabIndex = 2;
             // 
             // button1
@@ -168,7 +169,7 @@
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(3, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(90, 28);
+            this.button1.Size = new System.Drawing.Size(90, 38);
             this.button1.TabIndex = 0;
             this.button1.Text = "ADD";
             this.button1.UseVisualStyleBackColor = true;

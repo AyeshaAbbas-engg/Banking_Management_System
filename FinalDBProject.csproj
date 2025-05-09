@@ -103,11 +103,13 @@
   <ItemGroup>
     <Compile Include="BL\Accountdetailbl.cs" />
     <Compile Include="BL\BranchBL.cs" />
+    <Compile Include="BL\ComplainBL.cs" />
     <Compile Include="BL\EmployeeBL.cs" />
     <Compile Include="BL\UserBL.cs" />
     <Compile Include="DatabaseHelper.cs" />
     <Compile Include="DL\AccountDetailDl.cs" />
     <Compile Include="DL\BranchDL.cs" />
+    <Compile Include="DL\ComplainDL.cs" />
     <Compile Include="DL\EmployeeDL.cs" />
     <Compile Include="DL\UserDL.cs" />
     <Compile Include="Domain\Bank.cs" />
@@ -144,6 +146,12 @@
     <Compile Include="UI\AddEmployee.Designer.cs">
       <DependentUpon>AddEmployee.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\AssignManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\AssignManager.Designer.cs">
+      <DependentUpon>AssignManager.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\BankHeadForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,6 +163,12 @@
     </Compile>
     <Compile Include="UI\BranchViewFrm.Designer.cs">
       <DependentUpon>BranchViewFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Complain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Complain.Designer.cs">
+      <DependentUpon>Complain.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\CustomerDetails.cs">
       <SubType>Form</SubType>
@@ -179,6 +193,18 @@
     </Compile>
     <Compile Include="UI\LoginPage.Designer.cs">
       <DependentUpon>LoginPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ManagerDashBoard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ManagerDashBoard.Designer.cs">
+      <DependentUpon>ManagerDashBoard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\RemoveManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\RemoveManager.Designer.cs">
+      <DependentUpon>RemoveManager.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\UC_BranchCard.cs">
       <SubType>UserControl</SubType>
@@ -208,11 +234,17 @@
     <EmbeddedResource Include="UI\AddEmployee.resx">
       <DependentUpon>AddEmployee.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\AssignManager.resx">
+      <DependentUpon>AssignManager.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\BankHeadForm.resx">
       <DependentUpon>BankHeadForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\BranchViewFrm.resx">
       <DependentUpon>BranchViewFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Complain.resx">
+      <DependentUpon>Complain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\CustomerDetails.resx">
       <DependentUpon>CustomerDetails.cs</DependentUpon>
@@ -225,6 +257,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\LoginPage.resx">
       <DependentUpon>LoginPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ManagerDashBoard.resx">
+      <DependentUpon>ManagerDashBoard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\RemoveManager.resx">
+      <DependentUpon>RemoveManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\UC_BranchCard.resx">
       <DependentUpon>UC_BranchCard.cs</DependentUpon>

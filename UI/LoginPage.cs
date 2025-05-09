@@ -54,9 +54,10 @@ namespace WindowsFormsApp1.UI
                     //ManagerDashboard managerDashboard = new ManagerDashboard(user);
                     //managerDashboard.Show();
                 }
-                else if (user is Employee)
+                else if (user is EmployeeBL)
                 {
                     MessageBox.Show("Login Successful Employee", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    
                     //EmployeeDashboard empDashboard = new EmployeeDashboard(user);
                     //empDashboard.Show();
                 }

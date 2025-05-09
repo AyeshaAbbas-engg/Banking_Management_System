@@ -11,6 +11,7 @@ namespace WindowsFormsApp1.BL
     {
        public int branch { get; set; }
         public int userID { get; set; }
+        public string status { get; set; }
         public EmployeeBL( string username, string email, string passwordHash, string phone, int branch)
             : base( username, email, passwordHash,phone)
         {
@@ -21,6 +22,13 @@ namespace WindowsFormsApp1.BL
         {
             this.branch = branch;
             userID = id;
+        }
+        public EmployeeBL(string username, string email, string passwordHash, string phone, int branch, int id,string status)
+           : base(username, email, passwordHash, phone)
+        {
+            this.branch = branch;
+            userID = id;
+            this.status = status;
         }
         public EmployeeBL(int id)
         {

@@ -27,7 +27,7 @@ namespace WindowsFormsApp1.UI
         private void button1_Click(object sender, EventArgs e)
         {
 
-            EmployeeBL em = new EmployeeBL(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, Convert.ToInt32(comboBox1.SelectedValue),id);
+            EmployeeBL em = new EmployeeBL(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, Convert.ToInt32(comboBox1.SelectedValue),id,comboBox2.Text);
             EmployeeDL.UpdateEmployee(em);
             MessageBox.Show("Employee Updated Successfully");
             this.Close();
@@ -68,6 +68,16 @@ namespace WindowsFormsApp1.UI
             LoadEmployeeData();
             MaximizeBox = false;
             MinimizeBox = false;
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
