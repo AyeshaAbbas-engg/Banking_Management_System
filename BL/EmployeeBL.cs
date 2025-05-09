@@ -9,7 +9,7 @@ namespace WindowsFormsApp1.BL
 {
     internal class EmployeeBL : User
     {
-       public int branch { get; set; }
+        public int branch { get; set; }
         public int userID { get; set; }
         public string status { get; set; }
         public EmployeeBL( string username, string email, string passwordHash, string phone, int branch)
