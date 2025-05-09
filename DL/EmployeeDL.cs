@@ -13,7 +13,6 @@ namespace WindowsFormsApp1.DL
     {
         public static void AddEmployeetouser(EmployeeBL e)
         {
-
          string insertUserQuery = $"INSERT INTO Users (UserName, Email, Password_Hash, RoleID) VALUES ('{e.UserName}', '{e.Email}', '{e.PasswordHash}', {3});";
           DataBaseHelper.Instance.Update(insertUserQuery);
         }

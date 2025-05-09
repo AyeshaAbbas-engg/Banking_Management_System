@@ -101,13 +101,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BL\AccountBl.cs" />
     <Compile Include="BL\Accountdetailbl.cs" />
     <Compile Include="BL\BranchBL.cs" />
+    <Compile Include="BL\CustomerBL.cs" />
     <Compile Include="BL\EmployeeBL.cs" />
+    <Compile Include="BL\CurrentAccountBL.cs" />
+    <Compile Include="BL\SavingAccountBL.cs" />
     <Compile Include="BL\UserBL.cs" />
     <Compile Include="DatabaseHelper.cs" />
     <Compile Include="DL\AccountDetailDl.cs" />
     <Compile Include="DL\BranchDL.cs" />
+    <Compile Include="DL\CustomerDL.cs" />
     <Compile Include="DL\EmployeeDL.cs" />
     <Compile Include="DL\UserDL.cs" />
     <Compile Include="Domain\Bank.cs" />
@@ -126,11 +131,23 @@
     <Compile Include="TransactionFrm.Designer.cs">
       <DependentUpon>TransactionFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Account.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Account.Designer.cs">
+      <DependentUpon>Account.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\AccountDetails.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\AccountDetails.Designer.cs">
       <DependentUpon>AccountDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\AccountManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\AccountManagement.Designer.cs">
+      <DependentUpon>AccountManagement.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\AddBranch.cs">
       <SubType>Form</SubType>
@@ -174,6 +191,12 @@
     <Compile Include="UI\Employee.Designer.cs">
       <DependentUpon>Employee.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\ExistingEmployee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ExistingEmployee.Designer.cs">
+      <DependentUpon>ExistingEmployee.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\LoginPage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -185,6 +208,18 @@
     </Compile>
     <Compile Include="UI\UC_BranchCard.Designer.cs">
       <DependentUpon>UC_BranchCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UpdateAccount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\UpdateAccount.Designer.cs">
+      <DependentUpon>UpdateAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\updateSavingAccount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\updateSavingAccount.Designer.cs">
+      <DependentUpon>updateSavingAccount.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -199,8 +234,14 @@
     <EmbeddedResource Include="TransactionFrm.resx">
       <DependentUpon>TransactionFrm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Account.resx">
+      <DependentUpon>Account.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\AccountDetails.resx">
       <DependentUpon>AccountDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\AccountManagement.resx">
+      <DependentUpon>AccountManagement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\AddBranch.resx">
       <DependentUpon>AddBranch.cs</DependentUpon>
@@ -223,11 +264,20 @@
     <EmbeddedResource Include="UI\Employee.resx">
       <DependentUpon>Employee.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\ExistingEmployee.resx">
+      <DependentUpon>ExistingEmployee.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\LoginPage.resx">
       <DependentUpon>LoginPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\UC_BranchCard.resx">
       <DependentUpon>UC_BranchCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UpdateAccount.resx">
+      <DependentUpon>UpdateAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\updateSavingAccount.resx">
+      <DependentUpon>updateSavingAccount.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

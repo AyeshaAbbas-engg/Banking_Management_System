@@ -96,10 +96,21 @@ namespace WindowsFormsApp1
             }
 
         }
+        public object ExecuteScalar(string query)
+        {
+            using (var connection = getConnection())
+            {
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    return command.ExecuteScalar();
+                }
+            }
+        }
+
 
 
     }
-    
+
 }
 
 

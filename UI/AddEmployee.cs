@@ -80,7 +80,7 @@ namespace WindowsFormsApp1.UI
         private void button1_Click(object sender, EventArgs e)
         {
             EmployeeBL em= new EmployeeBL(textBox1.Text,textBox2.Text,textBox3.Text,textBox4.Text, Convert.ToInt32(comboBox1.SelectedValue));
-            EmployeeDL.AddEmployeetouser(em);
+            EmployeeDL.AddEmployeetouser(em); 
             EmployeeDL.AddEmployee(em);
             MessageBox.Show("Employee Added Successfully");
             this.Close();
