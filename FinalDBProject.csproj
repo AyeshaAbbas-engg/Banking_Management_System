@@ -144,11 +144,17 @@
     <Compile Include="UI\Account.Designer.cs">
       <DependentUpon>Account.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\AccountDetails.cs">
+    <Compile Include="UI\Account.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\AccountDetails.Designer.cs">
-      <DependentUpon>AccountDetails.cs</DependentUpon>
+    <Compile Include="UI\Account.Designer.cs">
+      <DependentUpon>Account.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\AccountManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\AccountManagement.Designer.cs">
+      <DependentUpon>AccountManagement.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\AccountManagement.cs">
       <SubType>Form</SubType>
@@ -306,6 +312,18 @@
     <Compile Include="UI\ViewChequeRequest.Designer.cs">
       <DependentUpon>ViewChequeRequest.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\UpdateAccount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\UpdateAccount.Designer.cs">
+      <DependentUpon>UpdateAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\updateSavingAccount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\updateSavingAccount.Designer.cs">
+      <DependentUpon>updateSavingAccount.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -319,8 +337,11 @@
     <EmbeddedResource Include="UI\Account.resx">
       <DependentUpon>Account.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\AccountDetails.resx">
-      <DependentUpon>AccountDetails.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Account.resx">
+      <DependentUpon>Account.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\AccountManagement.resx">
+      <DependentUpon>AccountManagement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\AccountManagement.resx">
       <DependentUpon>AccountManagement.cs</DependentUpon>
@@ -366,6 +387,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\IssueeCbookFrm.resx">
       <DependentUpon>IssueeCbookFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\EmployeedashBoard.resx">
+      <DependentUpon>EmployeedashBoard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ExistingEmployee.resx">
+      <DependentUpon>ExistingEmployee.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\LoginPage.resx">
       <DependentUpon>LoginPage.cs</DependentUpon>
