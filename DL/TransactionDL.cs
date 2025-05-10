@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,82 +10,52 @@ namespace WindowsFormsApp1.DL
 {
     public class TransactionDL
     {
-        public static bool ExecuteTransfer(int fromAcc, int toAcc, decimal amount, string remarks)
+        public static bool InsertTransaction(int senderId, int receiverId, int fromBranchId, int toBranchId, decimal amount)
         {
-            using (MySqlConnection con = DataBaseHelper.Instance.getConnection())
+            using (var con = DataBaseHelper.Instance.getConnection())
+            using (var trans = con.BeginTransaction())
             {
-                con.Open();
-                MySqlTransaction transaction = con.BeginTransaction();
-
                 try
                 {
-                    if (fromAcc == toAcc)
-                        throw new Exception("Cannot transfer to the same account.");
+                    // 1. Check sender balance
+                    string checkBal = $"SELECT Balance FROM account WHERE AccountID = {senderId}";
+                    var checkCmd = new MySqlCommand(checkBal, con, trans);
+                    decimal senderBalance = Convert.ToDecimal(checkCmd.ExecuteScalar());
 
-                    // Check both accounts exist and belong to same branch
-                    string checkQuery = $@"
-                    SELECT a1.Balance, a1.BranchID AS Branch1, a2.BranchID AS Branch2 
-                    FROM Accounts a1, Accounts a2 
-                    WHERE a1.AccountID = {fromAcc} AND a2.AccountID = {toAcc}";
+                    if (senderBalance < amount)
+                        throw new Exception("Insufficient balance.");
 
-                    MySqlCommand checkCmd = new MySqlCommand(checkQuery, con, transaction);
-                    using (MySqlDataReader reader = checkCmd.ExecuteReader())
-                    {
+                    // 2. Deduct from sender
+                    string deduct = $"UPDATE account SET Balance = Balance - {amount} WHERE AccountID = {senderId}";
+                    new MySqlCommand(deduct, con, trans).ExecuteNonQuery();
 
-                        if (!reader.Read())
-                            throw new Exception("One or both accounts do not exist.");
+                    // 3. Add to receiver
+                    string add = $"UPDATE account SET Balance = Balance + {amount} WHERE AccountID = {receiverId}";
+                    new MySqlCommand(add, con, trans).ExecuteNonQuery();
 
-                        decimal balance = reader.GetDecimal("Balance");
-                        int branch1 = reader.GetInt32("Branch1");
-                        int branch2 = reader.GetInt32("Branch2");
+                    // 4. Insert transaction
+                    string type = fromBranchId == toBranchId ? "WithBranch" : "BranchToBranch";
+                    string insert = $@"
+                    INSERT INTO transactions 
+                    (SenderAccountID, ReceiverAccountID, FromBranchID, ToBranchID, Amount, TransactionType, TransactionDate, Status)
+                    VALUES ({senderId}, {receiverId}, {fromBranchId}, {toBranchId}, {amount}, '{type}', NOW(), 'Completed')";
+                    new MySqlCommand(insert, con, trans).ExecuteNonQuery();
 
-                        if (branch1 != branch2)
-                            throw new Exception("Accounts are not in the same branch.");
-
-                        if (balance < amount)
-                            throw new Exception("Insufficient balance.");
-
-                        reader.Close();
-                    }
-                    // Deduct from sender
-                    string debitQuery = $"UPDATE Accounts SET Balance = Balance - {amount} WHERE AccountID = {fromAcc}";
-                    MySqlCommand debitCmd = new MySqlCommand(debitQuery, con, transaction);
-                    debitCmd.ExecuteNonQuery();
-
-                    // Credit to receiver
-                    string creditQuery = $"UPDATE Accounts SET Balance = Balance + {amount} WHERE AccountID = {toAcc}";
-                    MySqlCommand creditCmd = new MySqlCommand(creditQuery, con, transaction);
-                    creditCmd.ExecuteNonQuery();
-
-                    // Record successful transaction
-                    string insertTxn = $@"
-                    INSERT INTO Transactions (FromAccountID, ToAccountID, Amount, Remarks, Status)
-                    VALUES ({fromAcc}, {toAcc}, {amount}, '{remarks}', 'Success')";
-                    MySqlCommand txnCmd = new MySqlCommand(insertTxn, con, transaction);
-                    txnCmd.ExecuteNonQuery();
-
-                    transaction.Commit();
+                    trans.Commit();
                     return true;
                 }
-                catch (Exception ex)
+                catch
                 {
-                    try
-                    {
-                        // Record failed transaction
-                        string failTxn = $@"
-                        INSERT INTO Transactions (FromAccountID, ToAccountID, Amount, Remarks, Status)
-                        VALUES ({fromAcc}, {toAcc}, {amount}, '[FAILED] {ex.Message}', 'Failed')";
-                        MySqlCommand failCmd = new MySqlCommand(failTxn, con, transaction);
-                        failCmd.ExecuteNonQuery();
-
-                        transaction.Rollback();
-                    }
-                    catch { }
-
-                    return false;
+                    trans.Rollback();
+                    throw;
                 }
             }
+        }
 
+        public static DataTable GetAllTransactions()
+        {
+            string query = "SELECT * FROM Transactions ORDER BY TransactionDate DESC";
+            return DataBaseHelper.GetData(query);
         }
     }
 }
