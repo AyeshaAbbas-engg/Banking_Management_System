@@ -103,19 +103,28 @@
   <ItemGroup>
     <Compile Include="BL\AccountBl.cs" />
     <Compile Include="BL\Accountdetailbl.cs" />
+    <Compile Include="BL\AddChequeLeafBL.cs" />
     <Compile Include="BL\BranchBL.cs" />
+    <Compile Include="BL\ChequeBL.cs" />
     <Compile Include="BL\ComplainBL.cs" />
+    <Compile Include="BL\CreditCardBL.cs" />
+    <Compile Include="BL\CreditCardGenerator.cs" />
     <Compile Include="BL\CurrentAccountBL.cs" />
     <Compile Include="BL\CustomerBL.cs" />
     <Compile Include="BL\EmployeeBL.cs" />
+    <Compile Include="BL\RequestBL.cs" />
     <Compile Include="BL\SavingAccountBL.cs" />
     <Compile Include="BL\UserBL.cs" />
     <Compile Include="DatabaseHelper.cs" />
     <Compile Include="DL\AccountDetailDl.cs" />
+    <Compile Include="DL\AddChequeLeafDL.cs" />
     <Compile Include="DL\BranchDL.cs" />
+    <Compile Include="DL\ChequeDL.cs" />
     <Compile Include="DL\ComplainDL.cs" />
+    <Compile Include="DL\CreditCardDL.cs" />
     <Compile Include="DL\CustomerDL.cs" />
     <Compile Include="DL\EmployeeDL.cs" />
+    <Compile Include="DL\RequestDL.cs" />
     <Compile Include="DL\UserDL.cs" />
     <Compile Include="Domain\Bank.cs" />
     <Compile Include="Domain\Branch.cs" />
@@ -181,11 +190,23 @@
     <Compile Include="UI\BranchViewFrm.Designer.cs">
       <DependentUpon>BranchViewFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\ChequeLeafFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ChequeLeafFrm.Designer.cs">
+      <DependentUpon>ChequeLeafFrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Complain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\Complain.Designer.cs">
       <DependentUpon>Complain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\CustomerDashBoard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\CustomerDashBoard.Designer.cs">
+      <DependentUpon>CustomerDashBoard.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\CustomerDetails.cs">
       <SubType>Form</SubType>
@@ -217,11 +238,29 @@
     <Compile Include="UI\EmployeedashBoard.Designer.cs">
       <DependentUpon>EmployeedashBoard.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\EmployeeManageRequest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\EmployeeManageRequest.Designer.cs">
+      <DependentUpon>EmployeeManageRequest.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\ExistingEmployee.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\ExistingEmployee.Designer.cs">
       <DependentUpon>ExistingEmployee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\IssueCardFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\IssueCardFrm.Designer.cs">
+      <DependentUpon>IssueCardFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\IssueeCbookFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\IssueeCbookFrm.Designer.cs">
+      <DependentUpon>IssueeCbookFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\LoginPage.cs">
       <SubType>Form</SubType>
@@ -235,11 +274,23 @@
     <Compile Include="UI\ManagerDashBoard.Designer.cs">
       <DependentUpon>ManagerDashBoard.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\RecordLeaveFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\RecordLeaveFrm.Designer.cs">
+      <DependentUpon>RecordLeaveFrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\RemoveManager.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\RemoveManager.Designer.cs">
       <DependentUpon>RemoveManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ServiceRequests.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ServiceRequests.Designer.cs">
+      <DependentUpon>ServiceRequests.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\UC_BranchCard.cs">
       <SubType>UserControl</SubType>
@@ -258,6 +309,18 @@
     </Compile>
     <Compile Include="UI\updateSavingAccount.Designer.cs">
       <DependentUpon>updateSavingAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ViewCardRequest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ViewCardRequest.Designer.cs">
+      <DependentUpon>ViewCardRequest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ViewChequeRequest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ViewChequeRequest.Designer.cs">
+      <DependentUpon>ViewChequeRequest.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -296,6 +359,9 @@
     <EmbeddedResource Include="UI\BranchViewFrm.resx">
       <DependentUpon>BranchViewFrm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\ChequeLeafFrm.resx">
+      <DependentUpon>ChequeLeafFrm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Complain.resx">
       <DependentUpon>Complain.cs</DependentUpon>
     </EmbeddedResource>
@@ -314,8 +380,17 @@
     <EmbeddedResource Include="UI\EmployeedashBoard.resx">
       <DependentUpon>EmployeedashBoard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\EmployeeManageRequest.resx">
+      <DependentUpon>EmployeeManageRequest.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\ExistingEmployee.resx">
       <DependentUpon>ExistingEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\IssueCardFrm.resx">
+      <DependentUpon>IssueCardFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\IssueeCbookFrm.resx">
+      <DependentUpon>IssueeCbookFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\LoginPage.resx">
       <DependentUpon>LoginPage.cs</DependentUpon>
@@ -323,8 +398,14 @@
     <EmbeddedResource Include="UI\ManagerDashBoard.resx">
       <DependentUpon>ManagerDashBoard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\RecordLeaveFrm.resx">
+      <DependentUpon>RecordLeaveFrm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\RemoveManager.resx">
       <DependentUpon>RemoveManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ServiceRequests.resx">
+      <DependentUpon>ServiceRequests.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\UC_BranchCard.resx">
       <DependentUpon>UC_BranchCard.cs</DependentUpon>
@@ -334,6 +415,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\updateSavingAccount.resx">
       <DependentUpon>updateSavingAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ViewCardRequest.resx">
+      <DependentUpon>ViewCardRequest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ViewChequeRequest.resx">
+      <DependentUpon>ViewChequeRequest.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
