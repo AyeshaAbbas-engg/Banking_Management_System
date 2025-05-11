@@ -20,7 +20,7 @@ namespace WindowsFormsApp1.UI
         }
         public void LoadActiveEmployees()
         {
-            string query = $"SELECT E.EmployeeID,E.Name,E.Email, B.BranchName, IFNULL(M.Name, 'No Manager') AS ManagerName FROM Employee E JOIN  Branch B ON E.BranchID = B.BranchID LEFT JOIN  Employee M ON M.EmployeeID = E.ManagerID WHERE E.Status = 'Active'";
+            string query = $"SELECT E.EmployeeID,E.Name,E.Email, B.BranchName, IFNULL(M.Name, 'No Manager') AS ManagerName  , M.EmployeeID AS ManagerID FROM Employee E JOIN  Branch B ON E.BranchID = B.BranchID LEFT JOIN  Employee M ON M.EmployeeID = E.ManagerID WHERE E.Status = 'Active'";
 
             DataTable dt = DataBaseHelper.GetData(query);
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;  // fill the grid
@@ -45,7 +45,7 @@ namespace WindowsFormsApp1.UI
             dataGridView1.DataSource = dt;
 
         }
-
+        public static int mid;
         private void button1_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 0)
@@ -59,7 +59,8 @@ namespace WindowsFormsApp1.UI
 
                 int selectedEmployeeId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["EmployeeID"].Value);
                  string selectedBranchID = dataGridView1.SelectedRows[0].Cells["BranchName"].Value.ToString();
-
+                mid = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["ManagerID"].Value);
+                EmployeeDL.removeManager(mid);
                 EmployeeDL.AssignManager(selectedEmployeeId, selectedBranchID);
                 MessageBox.Show("Manager Assigned Successfully");
                 LoadActiveEmployees();

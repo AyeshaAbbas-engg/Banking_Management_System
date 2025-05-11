@@ -20,5 +20,11 @@ namespace WindowsFormsApp1.DL
             int rows = DataBaseHelper.Instance.Update(query);
             return rows > 0;
         }
+        public static void Block(int id)
+        {
+            string query = $"UPDATE ChequeBooks SET Status = 'Block' WHERE ChequeBookID = '{id}' ";
+            DataBaseHelper.Instance.Update(query);
+
+        }
     }
 }

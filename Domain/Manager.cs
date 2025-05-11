@@ -8,8 +8,8 @@ namespace WindowsFormsApp1.Domain
 {
     public class Manager : User
     {
-        //public Manager(int id, string username, string email, string passwordHash)
-        //: base(id, username, email, passwordHash) { }
+        public Manager(int id)
+        : base(id) { }
 
         public override string GetRole()
         {

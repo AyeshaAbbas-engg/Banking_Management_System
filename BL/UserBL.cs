@@ -9,6 +9,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using WindowsFormsApp1.Domain;
 using WindowsFormsApp1.DL;
 using System.Data;
+using System.Windows.Forms;
 
 namespace WindowsFormsApp1.BL
 {
@@ -28,13 +29,14 @@ namespace WindowsFormsApp1.BL
             string email = row["Email"].ToString();
             string pass = password;
             string role = row["Value_"].ToString();
-
+           
+            MessageBox.Show(id.ToString());
             if (role == "Head")
                 return new Head(id);
-            //else if (role == "Manager")
-            //    return new Manager(id, uname, email, pass);
+            else if (role == "Manager")
+                return new Manager(id);
 
-            if (role == "Employee")
+            else if (role == "Employee")
                 return new EmployeeBL(id);
             else if (role == "Customer")
                 return new CustomerBL(id);

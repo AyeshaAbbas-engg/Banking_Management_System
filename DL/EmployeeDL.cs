@@ -47,6 +47,12 @@ namespace WindowsFormsApp1.DL
             DataBaseHelper.Instance.Update(softDeleteQuery);
 
         }
+        public static void removeManager(int id)
+        {
+            string softDeleteQuery = $"UPDATE Employee SET RoleID=3 where  EmployeeID = {id}";
+            DataBaseHelper.Instance.Update(softDeleteQuery);
+
+        }
         public static int getBranchID(string bid)
         {
             string query = $"SELECT BranchID FROM Branch WHERE BranchName = '{bid}';";
@@ -58,8 +64,16 @@ namespace WindowsFormsApp1.DL
         public static void AssignManager(int managerId,string BranchID)
         {
 
-            string assignManagerQuery = $"UPDATE Employee SET ManagerID = {managerId} WHERE BranchID = {getBranchID(BranchID)};";
+            string assignManagerQuery = $"UPDATE Employee SET ManagerID = {managerId}  WHERE BranchID = {getBranchID(BranchID)};";
             DataBaseHelper.Instance.Update(assignManagerQuery);
+            string upadterole = $"SET SQL_SAFE_UPDATES = 0; ";
+            DataBaseHelper.Instance.Update(upadterole);
+            string newline = $"UPDATE Employee SET RoleID = 2 WHERE EmployeeID = ManagerID;";
+            DataBaseHelper.Instance.Update(newline);
+            string newl=$" SET SQL_SAFE_UPDATES = 1";
+            DataBaseHelper.Instance.Update(newl);
+           
+
         }
     }
 }

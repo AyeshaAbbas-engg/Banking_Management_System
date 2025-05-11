@@ -26,5 +26,12 @@ namespace WindowsFormsApp1.UI
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Employee employee = new Employee();
+            employee.Show();
+        }
     }
 }

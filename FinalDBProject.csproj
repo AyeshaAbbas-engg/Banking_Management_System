@@ -105,6 +105,7 @@
     <Compile Include="BL\Accountdetailbl.cs" />
     <Compile Include="BL\AddChequeLeafBL.cs" />
     <Compile Include="BL\ATMBL.cs" />
+    <Compile Include="BL\BankFundManagementBL.cs" />
     <Compile Include="BL\BranchBL.cs" />
     <Compile Include="BL\ChequeBL.cs" />
     <Compile Include="BL\ComplainBL.cs" />
@@ -113,6 +114,7 @@
     <Compile Include="BL\CurrentAccountBL.cs" />
     <Compile Include="BL\CustomerBL.cs" />
     <Compile Include="BL\EmployeeBL.cs" />
+    <Compile Include="BL\loanPaymentBL.cs" />
     <Compile Include="BL\RequestBL.cs" />
     <Compile Include="BL\SavingAccountBL.cs" />
     <Compile Include="BL\TransactionBL.cs" />
@@ -121,12 +123,14 @@
     <Compile Include="DL\AccountDetailDl.cs" />
     <Compile Include="DL\AddChequeLeafDL.cs" />
     <Compile Include="DL\ATMDL.cs" />
+    <Compile Include="DL\BankFundManagementDL.cs" />
     <Compile Include="DL\BranchDL.cs" />
     <Compile Include="DL\ChequeDL.cs" />
     <Compile Include="DL\ComplainDL.cs" />
     <Compile Include="DL\CreditCardDL.cs" />
     <Compile Include="DL\CustomerDL.cs" />
     <Compile Include="DL\EmployeeDL.cs" />
+    <Compile Include="DL\LoanPaymentDL.cs" />
     <Compile Include="DL\RequestDL.cs" />
     <Compile Include="DL\TransactionDL.cs" />
     <Compile Include="DL\UserDL.cs" />
@@ -193,6 +197,12 @@
     </Compile>
     <Compile Include="UI\BankHeadForm.Designer.cs">
       <DependentUpon>BankHeadForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\BlockCredit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\BlockCredit.Designer.cs">
+      <DependentUpon>BlockCredit.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\BranchViewFrm.cs">
       <SubType>Form</SubType>
@@ -380,6 +390,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\BankHeadForm.resx">
       <DependentUpon>BankHeadForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\BlockCredit.resx">
+      <DependentUpon>BlockCredit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\BranchViewFrm.resx">
       <DependentUpon>BranchViewFrm.cs</DependentUpon>

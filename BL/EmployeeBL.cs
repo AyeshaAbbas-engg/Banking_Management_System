@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Microsoft.SqlServer.Server;
 using WindowsFormsApp1.Domain;
 namespace WindowsFormsApp1.BL
@@ -32,7 +33,8 @@ namespace WindowsFormsApp1.BL
         }
         public EmployeeBL(int id)
         {
-            this.userID = id;
+            UserID = id;
+            
         }
         public override string GetRole()
         {

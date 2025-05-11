@@ -36,6 +36,7 @@ namespace WindowsFormsApp1.UI
                 return;
             }
             User user = UserBL.LogInSuccessful(Username,Password);
+            
 
             if (user != null)
             {
@@ -51,15 +52,17 @@ namespace WindowsFormsApp1.UI
                 else if (user is Manager)
                 {
                     MessageBox.Show("Login Successful Manager", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //ManagerDashboard managerDashboard = new ManagerDashboard(user);
-                    //managerDashboard.Show();
+                    this.Hide();
+                    ManagerDashBoard managerDashBoard = new ManagerDashBoard();
+                    managerDashBoard.Show();
                 }
                 else if (user is EmployeeBL)
                 {
                     MessageBox.Show("Login Successful Employee", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    
-                    //EmployeeDashboard empDashboard = new EmployeeDashboard(user);
-                    //empDashboard.Show();
+                    this.Hide();
+                   
+                    EmployeedashBoard employeedashBoard = new EmployeedashBoard(user.UserID);
+                    employeedashBoard.Show();
                 }
                 else if (user is CustomerBL)
                 {

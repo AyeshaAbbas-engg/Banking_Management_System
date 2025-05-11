@@ -28,6 +28,11 @@ namespace WindowsFormsApp1.DL
             string query = $"UPDATE CreditCards SET pin = '{newPin}' WHERE CardNumber = '{cardNumber}' AND AccountID IN (SELECT AccountID FROM Account WHERE UserID = {id}";
             int rowsAffected = DataBaseHelper.Instance.Update(query);
             return rowsAffected > 0;
+        }public static void Block(int id)
+        {
+            string query = $"UPDATE CreditCards SET Status = 'Block' WHERE CardID = '{id}' ";
+            DataBaseHelper.Instance.Update(query);
+            
         }
     }
     }

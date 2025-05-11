@@ -20,8 +20,9 @@ namespace WindowsFormsApp1.UI
         int id;
         public Complain(int id)
         {
-            InitializeComponent();
            this.id = id;
+            MessageBox.Show(id.ToString());
+            InitializeComponent();
             loadComplain();
             
         }

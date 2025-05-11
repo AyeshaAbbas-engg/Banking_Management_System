@@ -25,6 +25,13 @@ namespace WindowsFormsApp1.UI
             LoadActiveEmployees();
             
         }
+        int id;
+        public AccountManagement(int id)
+        {
+            InitializeComponent();
+            LoadActiveEmployees();
+            this.id = id;
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -137,7 +144,7 @@ namespace WindowsFormsApp1.UI
         private void button5_Click(object sender, EventArgs e)
         {
             this.Hide();
-            EmployeedashBoard employeedashBoard = new EmployeedashBoard();
+            EmployeedashBoard employeedashBoard = new EmployeedashBoard(id);
             employeedashBoard.Show();
         }
     }

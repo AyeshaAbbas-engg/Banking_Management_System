@@ -28,13 +28,13 @@ namespace WindowsFormsApp1.DL
 
         public static void AddCustomer(CustomerBL c)
         {
-            string insertCustomerQuery = $"INSERT INTO customer (Name,Email,CNIC,Phone,Address,DateOfBirth,BranchID,UserID) VALUES ('{c.UserName}', '{c.Email}', '{c.CNIC}', '{c.phone}', '{c.Address}', '{c.DateOfBirth.ToString("yyyy-MM-dd")}', {c.BranchID}, {latestID()});";
+            string insertCustomerQuery = $"INSERT INTO customer (Name,Email,CNIC,Phone,Address,DateOfBirth,UserID) VALUES ('{c.UserName}', '{c.Email}', '{c.CNIC}', '{c.phone}', '{c.Address}', '{c.DateOfBirth.ToString("yyyy-MM-dd")}', {latestID()});";
             DataBaseHelper.Instance.Update(insertCustomerQuery);
 
         }
         public static void UpdateCustomer(CustomerBL c)
         {
-            string updateCustomerQuery = $"UPDATE Customer SET Name = '{c.UserName}', Email = '{c.Email}', CNIC = '{c.CNIC}', Phone = '{c.phone}', Address = '{c.Address}', DateOfBirth = '{c.DateOfBirth.ToString("yyyy-MM-dd")}', BranchID = {c.BranchID} WHERE UserID = {c.UserID};";
+            string updateCustomerQuery = $"UPDATE Customer SET Name = '{c.UserName}', Email = '{c.Email}', CNIC = '{c.CNIC}', Phone = '{c.phone}', Address = '{c.Address}', DateOfBirth = '{c.DateOfBirth.ToString("yyyy-MM-dd")}'  WHERE UserID = {c.UserID};";
             DataBaseHelper.Instance.Update(updateCustomerQuery);
         }
         public static void SoftDelete(int id)

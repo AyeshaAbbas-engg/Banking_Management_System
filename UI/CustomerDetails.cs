@@ -29,19 +29,11 @@ namespace WindowsFormsApp1.UI
         {
 
         }
-        private void PopulateBranchComboBox()
-        {
-            string query = "SELECT BranchID, BranchName FROM branch";
-            DataTable dt = DataBaseHelper.GetData(query);
-
-            comboBox1.DataSource = dt;
-            comboBox1.DisplayMember = "BranchName";  
-            comboBox1.ValueMember = "BranchID";      
-        }
+       
 
         private void button2_Click(object sender, EventArgs e)
         {
-            CustomerBL c= new CustomerBL(textBox1.Text, textBox2.Text, textBox6.Text, textBox4.Text, textBox3.Text,textBox5.Text, dateTimePicker1.Value.Date,Convert.ToInt32 (comboBox1.SelectedValue));
+            CustomerBL c= new CustomerBL(textBox1.Text, textBox2.Text, textBox6.Text, textBox4.Text, textBox3.Text,textBox5.Text, dateTimePicker1.Value.Date,1);
             CustomerDL.AddCustomertouser(c);
             
          
@@ -55,7 +47,7 @@ namespace WindowsFormsApp1.UI
 
         private void CustomerDetails_Load(object sender, EventArgs e)
         {
-            PopulateBranchComboBox();
+           
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
             dateTimePicker1.CustomFormat = "yyyy-MM-dd";
         }

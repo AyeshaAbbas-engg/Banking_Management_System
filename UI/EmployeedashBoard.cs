@@ -12,9 +12,12 @@ namespace WindowsFormsApp1.UI
 {
     public partial class EmployeedashBoard : Form
     {
-        public EmployeedashBoard()
+        int id;
+        public EmployeedashBoard(int id)
         {
             InitializeComponent();
+            this.id = id;
+           
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -31,8 +34,8 @@ namespace WindowsFormsApp1.UI
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            this.Hide();
-            AccountManagement accountManagement = new AccountManagement();
+            
+            AccountManagement accountManagement = new AccountManagement(id);
             accountManagement.Show();
         }
 
@@ -45,6 +48,34 @@ namespace WindowsFormsApp1.UI
         private void button3_Click(object sender, EventArgs e)
         {
             
+            Complain complain = new Complain(id);
+            complain.Show();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Do you want to block Cheque?\nClick 'No' to block Credit.",
+                                          "Select Block Option",
+                                          MessageBoxButtons.YesNoCancel,
+                                          MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                // Open Cheque blocking form
+                 BlockCredit chequeForm = new BlockCredit(1);
+                chequeForm.Show();
+            }
+            else if (result == DialogResult.No)
+            {
+                // Open Credit blocking form
+                BlockCredit creditForm = new BlockCredit(2);
+                creditForm.Show();
+            }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
