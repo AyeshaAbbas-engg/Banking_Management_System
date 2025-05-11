@@ -117,5 +117,12 @@ namespace WindowsFormsApp1.UI
                 MessageBox.Show("Please select a row first.");
             }
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            BankHeadForm bankHeadForm = new BankHeadForm();
+            bankHeadForm.Show();
+        }
     }
 }

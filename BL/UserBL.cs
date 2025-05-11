@@ -14,36 +14,35 @@ namespace WindowsFormsApp1.BL
 {
     public class UserBL
     {
-        
-        public static User LogInSuccessful(string username,string password)
+
+        public static User LogInSuccessful(string username, string password)
         {
-            DataRow row = UserDL.GetUser(username,password);
+            DataRow row = UserDL.GetUser(username, password);
 
             if (row == null)
                 return null;
 
-            //string storedHash = row["Password_Hash"].ToString();
+           
+            int id = int.Parse(row["UserID"].ToString());
+            string uname = row["UserName"].ToString();
+            string email = row["Email"].ToString();
+            string pass = password;
+            string role = row["Value_"].ToString();
 
-            //if (BCrypt.Net.BCrypt.Verify(password, storedHash)) 
-            //{
-                int id = int.Parse(row["UserID"].ToString());
-                string uname = row["UserName"].ToString();
-                string email = row["Email"].ToString();
-                //string pass = row["Password_Hash"].ToString();
-                string pass = password;
-                string role = row["Value_"].ToString();
-
-            //if (role == "Head")
-            //    return new Head(id, uname, email, pass);
+            if (role == "Head")
+                return new Head(id);
             //else if (role == "Manager")
             //    return new Manager(id, uname, email, pass);
-             if (role == "Employee")
-                return new EmployeeBL(id);
-            //else if (role == "Customer")
-            //    return new Customer(id, uname, email, pass);
-            //}
 
+            if (role == "Employee")
+                return new EmployeeBL(id);
+            else if (role == "Customer")
+                return new CustomerBL(id);
             return null;
         }
+    
+
+            
+        
     }
 }

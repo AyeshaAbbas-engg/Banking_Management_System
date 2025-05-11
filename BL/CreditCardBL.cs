@@ -12,7 +12,7 @@ namespace WindowsFormsApp1.BL
         public int CustomerID { get; set; }
         public decimal CreditLimit { get; set; }
         public string Status { get; set; } = "Active";  // Default status is Active
-
+        public string pin { get; set; }
         public bool IssueCreditCard()
         {
             // Generate the card number (You can use the method from the previous example for random generation)
@@ -21,7 +21,7 @@ namespace WindowsFormsApp1.BL
             DateTime expiryDate = issueDate.AddYears(3);  // Expiry in 3 years
 
             // Insert into the database using the Data Layer
-            return CreditCardDL.AddCreditCard(RequestID, CustomerID, cardNumber, issueDate, expiryDate, CreditLimit, Status);
+            return CreditCardDL.AddCreditCard(RequestID, CustomerID, cardNumber, issueDate, expiryDate, CreditLimit, Status, pin);
         }
     }
 }

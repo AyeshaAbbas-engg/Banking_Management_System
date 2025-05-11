@@ -13,16 +13,18 @@ namespace WindowsFormsApp1.UI
 {
     public partial class ServiceRequests : Form
     {
-        public ServiceRequests()
+        int id;
+        public ServiceRequests(int id)
         {
             InitializeComponent();
+            this.id = id;
             LoadCustomerName();
             LoadServiceTypes(); // Load once on form load
         }
 
         private void LoadCustomerName()
         {
-            string query = "SELECT CustomerID, Name FROM Customer";
+            string query = $"SELECT CustomerID, Name FROM Customer where UserID ={id} ";
             DataTable dt = DataBaseHelper.Instance.ExecuteQuery(query);
             comboBox1.DataSource = dt;
             comboBox1.DisplayMember = "Name";
@@ -33,36 +35,25 @@ namespace WindowsFormsApp1.UI
         {
             if (comboBox1.SelectedValue is int customerId)
             {
-                LoadBranches(customerId);
-                comboBox3.DataSource = null; // Clear accounts
+                LoadBranches();
+                
             }
         }
 
-        private void LoadBranches(int customerId)
+        private void LoadBranches()
         {
-            string query = $@"
-            SELECT DISTINCT B.BranchID, B.BranchName
-            FROM Branch B
-            JOIN account A ON A.BranchID = B.BranchID
-            WHERE A.CustomerID = {customerId}";
+            string query = $"select b.BranchName,b.BranchID from branch b join account a on a.BranchID = b.BranchID join customer c on c.CustomerID= a.CustomerID where c.UserID ={id}";
             DataTable dt = DataBaseHelper.Instance.ExecuteQuery(query);
             comboBox2.DataSource = dt;
             comboBox2.DisplayMember = "BranchName";
             comboBox2.ValueMember = "BranchID";
         }
 
-        //private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    MessageBox.Show("Branch changed");
-           
-        //}
+        
 
-        private void LoadAccounts(int customerId, int branchId)
+        private void LoadAccounts()
         {
-            string query = $@"
-            SELECT AccountID, CONCAT('A/C# ', AccountNumber, ' (', AccountType, ')') AS DisplayName
-            FROM account
-            WHERE CustomerID = {customerId} AND BranchID = {branchId}";
+            string query = $"SELECT CONCAT('A/C# ', a.AccountNumber, ' (', a.AccountType, ')') AS DisplayName, a.AccountID FROM account AS a JOIN  customer AS c ON c.CustomerID = a.CustomerID WHERE c.UserID = {id} AND a.BranchID = '{comboBox2.SelectedValue}'";
             DataTable dt = DataBaseHelper.Instance.ExecuteQuery(query);
             comboBox3.DataSource = dt;
             comboBox3.DisplayMember = "DisplayName";
@@ -103,20 +94,44 @@ namespace WindowsFormsApp1.UI
             {
                 MessageBox.Show("Failed to submit request.");
             }
+            this.Hide();
+            CustomerDashBoard customerDashBoard = new CustomerDashBoard(id);
+            customerDashBoard.Show();
         }
 
         private void comboBox2_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            if (comboBox1.SelectedValue is int customerId &&
-               comboBox2.SelectedValue is int branchId)
-            {
-                LoadAccounts(customerId, branchId);
-            }
+            LoadAccounts();
         }
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            CustomerDashBoard customerDashBoard = new CustomerDashBoard(id);
+            customerDashBoard.Show();
+        }
+
+        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void comboBox2_Leave(object sender, EventArgs e)
+        {
+            
+            
+                LoadAccounts();
+            
+        }
+
+        private void comboBox1_Leave(object sender, EventArgs e)
+        {
+            LoadBranches();
         }
     }
 

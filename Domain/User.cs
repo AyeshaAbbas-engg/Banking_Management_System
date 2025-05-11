@@ -16,6 +16,11 @@ namespace WindowsFormsApp1.Domain
         public string phone { get; set; }
 
         public int UserID { get; set; }
+        public User(int id)
+        {
+            this.UserID = id;
+           
+        }
 
         public User( string username, string email, string passwordHash, string phone)
         {

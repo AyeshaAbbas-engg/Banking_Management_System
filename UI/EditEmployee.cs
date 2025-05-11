@@ -28,7 +28,7 @@ namespace WindowsFormsApp1.UI
         {
 
             EmployeeBL em = new EmployeeBL(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, Convert.ToInt32(comboBox1.SelectedValue),id,comboBox2.Text);
-            EmployeeDL.UpdateEmployee(em);
+            EmployeeDL.UpdateEmployee(em,id);
             MessageBox.Show("Employee Updated Successfully");
             this.Close();
             eme.LoadActiveEmployees();

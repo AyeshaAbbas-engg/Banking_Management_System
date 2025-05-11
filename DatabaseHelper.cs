@@ -14,7 +14,7 @@ namespace WindowsFormsApp1
     {
         private String serverName = "127.0.0.1";
         private String port = "3306";
-        private String databaseName = "dbfinal";
+        private String databaseName = "dbproject";
         private String databaseUser = "root";
         private String databasePassword = "1234567890-=1234567890-=";
 
@@ -53,7 +53,7 @@ namespace WindowsFormsApp1
 
         public static DataTable GetData(string query)
         {
-
+           
             using (var connection = DataBaseHelper.Instance.getConnection())
             {
                 using (var command = new MySqlCommand(query, connection))

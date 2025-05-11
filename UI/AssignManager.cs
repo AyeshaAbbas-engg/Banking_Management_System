@@ -71,5 +71,12 @@ namespace WindowsFormsApp1.UI
             RemoveManager rm = new RemoveManager(this);
             rm.ShowDialog();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            BankHeadForm b = new BankHeadForm();
+            b.Show();
+        }
     }
 }

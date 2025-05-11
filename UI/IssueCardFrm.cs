@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApp1.BL;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace WindowsFormsApp1.UI
 {
@@ -50,13 +51,16 @@ namespace WindowsFormsApp1.UI
             int requestID = Convert.ToInt32(comboBox1.SelectedValue);
             int customerID = Convert.ToInt32(comboBox2.SelectedValue);
             decimal creditLimit = Convert.ToDecimal(textBox2.Text);
+            string pin = Convert.ToString(textBox3.Text);
 
             // Create a CreditCardBL object to issue the card
             CreditCardBL creditCardBL = new CreditCardBL
             {
                 RequestID = requestID,
                 CustomerID = customerID,
-                CreditLimit = creditLimit
+                CreditLimit = creditLimit,
+                 pin = pin
+
             };
 
             bool success = creditCardBL.IssueCreditCard();
@@ -69,6 +73,11 @@ namespace WindowsFormsApp1.UI
             {
                 MessageBox.Show("Failed to issue credit card. Please try again.", "Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
  }

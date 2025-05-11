@@ -51,5 +51,11 @@ namespace WindowsFormsApp1.UI
             LoadBranches();
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            BankHeadForm b = new BankHeadForm();
+            b.Show();
+        }
     }
 }

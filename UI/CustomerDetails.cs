@@ -69,5 +69,13 @@ namespace WindowsFormsApp1.UI
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            AccountManagement accountManagement = new AccountManagement();
+            accountManagement.Show();
+
+        }
     }
 }

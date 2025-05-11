@@ -30,9 +30,9 @@ namespace WindowsFormsApp1.DL
             DataBaseHelper.Instance.Update(insertEmployeeQuery);
 
         }
-        public static void UpdateEmployee(EmployeeBL e)
+        public static void UpdateEmployee(EmployeeBL e,int id)
         {
-            string updateEmployeeQuery = $"UPDATE Employee SET Name = '{e.UserName}', Email = '{e.Email}',RoleID ={3}, Phone = '{e.phone}', BranchID = {e.branch} , Status ='{e.status}' WHERE UserID = {e.userID};";
+            string updateEmployeeQuery = $"UPDATE Employee SET Name = '{e.UserName}', Email = '{e.Email}',RoleID ={3}, Phone = '{e.phone}', BranchID = {e.branch} , Status ='{e.status}' WHERE EmployeeID = {id};";
             DataBaseHelper.Instance.Update(updateEmployeeQuery);
         }
         public static void SoftDelete(int id)

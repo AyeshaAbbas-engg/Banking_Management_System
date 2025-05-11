@@ -34,7 +34,9 @@ namespace WindowsFormsApp1.UI
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            Employee employee = new Employee();
+            employee.Show();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -45,6 +47,42 @@ namespace WindowsFormsApp1.UI
         private void BankHeadForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+    "Do you want to add a new branch?\nClick 'Yes' to add, 'No' to view existing.",
+    "Branch Action",
+    MessageBoxButtons.YesNoCancel,
+    MessageBoxIcon.Question
+);
+
+            if (result == DialogResult.Yes)
+            {
+                this.Hide();
+                AddBranch a = new AddBranch();
+                a.Show();
+                // Example: new AddBranchForm().ShowDialog();
+            }
+            else if (result == DialogResult.No)
+            {
+                this.Hide();
+                BranchViewFrm branchViewFrm = new BranchViewFrm();
+                branchViewFrm.Show();
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            AssignManager a = new AssignManager();
+            a.Show();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

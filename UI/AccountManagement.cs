@@ -133,5 +133,12 @@ namespace WindowsFormsApp1.UI
                 LoadActiveEmployees();
             }
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            EmployeedashBoard employeedashBoard = new EmployeedashBoard();
+            employeedashBoard.Show();
+        }
     }
 }

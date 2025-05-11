@@ -110,5 +110,12 @@ namespace WindowsFormsApp1.UI
         {
 
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            BankHeadForm b = new BankHeadForm();
+            b.Show();
+        }
     }
 }

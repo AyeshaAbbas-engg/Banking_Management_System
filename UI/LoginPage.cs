@@ -44,9 +44,9 @@ namespace WindowsFormsApp1.UI
                 this.Hide();
                 if (user is Head)
                 {
-                    MessageBox.Show("Login Successful Head", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //HeadDashboard headDashboard = new HeadDashboard(user); // Pass user if needed
-                    //headDashboard.Show();
+                    BankHeadForm b = new BankHeadForm();
+                    this.Hide();
+                    b.Show();
                 }
                 else if (user is Manager)
                 {
@@ -61,11 +61,14 @@ namespace WindowsFormsApp1.UI
                     //EmployeeDashboard empDashboard = new EmployeeDashboard(user);
                     //empDashboard.Show();
                 }
-                else if (user is Customer)
+                else if (user is CustomerBL)
                 {
                     MessageBox.Show("LogIn Successful Customer", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //CustomerDashboard customerDashboard = new CustomerDashboard(user);
-                    //customerDashboard.Show();
+                    CustomerDashBoard customerDashBoard = new CustomerDashBoard(user.UserID);
+                   
+                    this.Hide();
+                    customerDashBoard.Show();
+
                 }
             }
             else

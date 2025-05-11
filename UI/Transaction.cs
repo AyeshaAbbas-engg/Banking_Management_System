@@ -11,18 +11,22 @@ using WindowsFormsApp1.BL;
 
 namespace WindowsFormsApp1.UI
 {
+
     public partial class Transaction : Form
     {
-        public Transaction()
+        int id;
+        public Transaction(int id)
         {
             InitializeComponent();
             LoadToBranches();
             LoadAccountSender();
-            LoadAccountReceiver();
-            LoadTransaction();
+
+           
             LoadTFromBranches();
-            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
-            comboBox2.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
+            
+            
+            this.id = id;
+            
         }
         private int GetBranchIdByAccount(int accountId)
         {
@@ -31,36 +35,28 @@ namespace WindowsFormsApp1.UI
             return result != null ? Convert.ToInt32(result) : -1;
         }
 
-        private void LoadTransaction()
-        {
-            string query = "Select * from lookup where LookupID between 12 and 13";
-            DataTable dt = DataBaseHelper.Instance.ExecuteQuery(query);
-            comboBox5.DataSource = dt;
-            comboBox5.DisplayMember = "Value_";
-            comboBox5.ValueMember = "LookupID";
-        }
+        
         private void LoadAccountSender()
         {
-            string query = $"Select * from account where AccountType = 'Current'";
+            string query = $"select CONCAT(a.AccountNumber, ' (', a.AccountType, ')') AS DisplayText,a.AccountID from account  a join customer c on c.CustomerID=a.CustomerID where c.UserID ={id} and a.Status ='Active'";
             DataTable dt = DataBaseHelper.Instance.ExecuteQuery(query);
-            comboBox1.DataSource = dt;
-            comboBox1.DisplayMember = "AccountNumber";
-            comboBox1.ValueMember = "AccountID";
+            comboBox.DataSource = dt;
+            
+            comboBox.DisplayMember = "DisplayText";
+            comboBox.ValueMember = "AccountID";
+            
 
         }
-        private void LoadAccountReceiver()
+        private void loadAcountreceiver()
         {
-            string query = $"Select * from account where AccountType = 'Current'";
-            DataTable dt = DataBaseHelper.Instance.ExecuteQuery(query);
-            comboBox2.DataSource = dt;
-            comboBox2.DisplayMember = "AccountNumber";
-            comboBox2.ValueMember = "AccountID";
 
         }
 
         private void LoadToBranches()
         {
-            string query = $"Select * from branch";
+            string fullText = textBox2.Text;
+            string acc = fullText.Split(' ')[0];
+            string query = $"select b.BranchName,b.BranchID from branch b join account a on a.BranchID=b.BranchID where a.AccountNumber = '{acc}'";
             DataTable dt = DataBaseHelper.Instance.ExecuteQuery(query);
             comboBox4.DataSource = dt;
             comboBox4.DisplayMember = "BranchName";
@@ -68,26 +64,45 @@ namespace WindowsFormsApp1.UI
         }
         private void LoadTFromBranches()
         {
-            string query = $"Select * from branch";
+            string accNo = comboBox.ValueMember;
+            
+            string query = $"select b.BranchName,b.BranchID from branch b join account a on a.BranchID=b.BranchID where a.AccountID ='{accNo}'";
             DataTable dt = DataBaseHelper.Instance.ExecuteQuery(query);
-            comboBox3.DataSource = dt;
-            comboBox3.DisplayMember = "BranchName";
-            comboBox3.ValueMember = "BranchID";
+            comboBoxb.DataSource = dt;
+            comboBoxb.DisplayMember = "BranchName";
+            comboBoxb.ValueMember = "BranchID";
         }
-        private void button2_Click(object sender, EventArgs e)
-        {
+        
+       
 
+       
+
+       
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            CustomerDashBoard customerDashBoard = new CustomerDashBoard(id);
+            customerDashBoard.Show();
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
             try
             {
-                int senderId = Convert.ToInt32(comboBox1.SelectedValue);
-                int receiverId = Convert.ToInt32(comboBox2.SelectedValue);
-                int TobranchId = Convert.ToInt32(comboBox3.SelectedValue); 
+                int senderId = Convert.ToInt32(comboBox.SelectedValue);
+                int receiverId = Convert.ToInt32(textBox2.Text);
+                int TobranchId = Convert.ToInt32(comboBoxb.SelectedValue);
                 int FrombranchId = Convert.ToInt32(comboBox4.SelectedValue);
-                decimal amount = numericUpDown1.Value;
-                int TransactionType = Convert.ToInt32(comboBox1.SelectedValue);
+                decimal amount = Convert.ToInt32(textBox1.Text);
+
                 bool success = TransactionBL.PerformTransaction(senderId, receiverId, TobranchId, FrombranchId, amount);
                 if (success)
                     MessageBox.Show("Transaction completed successfully.");
+
+              this.Hide();
+              CustomerDashBoard customerDashBoard = new CustomerDashBoard(id);
+              customerDashBoard.Show();
             }
             catch (Exception ex)
             {
@@ -95,27 +110,100 @@ namespace WindowsFormsApp1.UI
             }
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
 
-            if (comboBox1.SelectedValue != null && int.TryParse(comboBox1.SelectedValue.ToString(), out int accountId))
+        }
+
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
-                int branchId = GetBranchIdByAccount(accountId);
-                comboBox3.SelectedValue = branchId;
+                e.Handled = true; // Block non-digit input
+                return;
+            }
+
+            if (char.IsDigit(e.KeyChar))
+            {
+                // Calculate future length after this input
+                int futureLength = textBox2.Text.Length - textBox2.SelectionLength + 1;
+                if (futureLength > 9)
+                {
+                    e.Handled = true; // Block input if it would exceed 4 digits
+                }
             }
         }
 
-        private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox2.Text.Length > 9)
+            {
+                textBox2.Text = textBox2.Text.Substring(0, 9); // Trim to 4 digits
+                textBox2.SelectionStart = textBox2.Text.Length; // Move cursor to end
+            }
+        }
+
+        private void textBox2_Leave(object sender, EventArgs e)
+        {
+            string accNo = textBox2.Text.Trim();
+
+            if (!string.IsNullOrEmpty(accNo))
+            {
+                string query = $"SELECT AccountType FROM Account WHERE AccountNumber = '{accNo}'";
+                object result = DataBaseHelper.Instance.ExecuteScalar(query);
+
+                if (result != null)
+                {
+                    string accountType = result.ToString();
+                    textBox2.Text = accNo + $" ({accountType})"; // or show in label
+                    LoadToBranches();
+                }
+                else
+                {
+                    MessageBox.Show("Invalid account number.");
+                }
+            }
+        }
+
+        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
         {
 
         }
 
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        private void Transaction_Load(object sender, EventArgs e)
         {
-            if (comboBox2.SelectedValue != null && int.TryParse(comboBox2.SelectedValue.ToString(), out int accountId))
+            LoadToBranches();
+           
+            LoadAccountSender();
+        }
+
+        private void comboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox.SelectedIndex != -1)
             {
-                int branchId = GetBranchIdByAccount(accountId);
-                comboBox4.SelectedValue = branchId;
+                LoadTFromBranches();
+            }
+        }
+
+        private void comboBoxb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void comboBox_Leave(object sender, EventArgs e)
+        {
+            if (comboBox.SelectedItem is DataRowView drv)
+            {
+                string accNo = drv["AccountID"].ToString();
+
+                string query = $"SELECT b.BranchName, b.BranchID " +
+                               $"FROM branch b JOIN account a ON a.BranchID = b.BranchID " +
+                               $"WHERE a.AccountID = '{accNo}'";
+
+                DataTable dt = DataBaseHelper.Instance.ExecuteQuery(query);
+                comboBoxb.DataSource = dt;
+                comboBoxb.DisplayMember = "BranchName";
+                comboBoxb.ValueMember = "BranchID";
             }
         }
     }

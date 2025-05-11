@@ -77,6 +77,9 @@ namespace WindowsFormsApp1.UI
                     MessageBox.Show("Error in Adding Current Account");
                 }
             }
+            this.Hide();
+            AccountManagement am = new AccountManagement();
+            am.Show();
         }
 
         private void Account_Load(object sender, EventArgs e)

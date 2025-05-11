@@ -9,9 +9,9 @@ namespace WindowsFormsApp1.DL
 {
     internal class ComplainDL
     {
-        public static void AddComplain(ComplainBL cb)
+        public static void AddComplain(ComplainBL cb,int id)
         {
-            string query = $"Insert into Complains (UserID , ComplainType , Description  ) Values (1,'{cb.ComplainType}' ,'{cb.ComplainText}')";
+            string query = $"Insert into Complains (UserID , ComplainType , Description  ) Values ({id},'{cb.ComplainType}' ,'{cb.ComplainText}')";
             DataBaseHelper.Instance.Update(query);
         }
     }
