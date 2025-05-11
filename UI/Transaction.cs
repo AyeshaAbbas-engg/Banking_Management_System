@@ -99,10 +99,12 @@ namespace WindowsFormsApp1.UI
                 bool success = TransactionBL.PerformTransaction(senderId, receiverId, TobranchId, FrombranchId, amount);
                 if (success)
                     MessageBox.Show("Transaction completed successfully.");
+                this.Hide();
+                CustomerReport c = new CustomerReport();
+                c.Show();
 
-              this.Hide();
-              CustomerDashBoard customerDashBoard = new CustomerDashBoard(id);
-              customerDashBoard.Show();
+
+              
             }
             catch (Exception ex)
             {

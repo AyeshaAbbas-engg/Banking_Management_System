@@ -41,6 +41,7 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -123,6 +124,7 @@
             this.tableLayoutPanel3.Controls.Add(this.button4, 1, 8);
             this.tableLayoutPanel3.Controls.Add(this.button5, 1, 10);
             this.tableLayoutPanel3.Controls.Add(this.button6, 1, 14);
+            this.tableLayoutPanel3.Controls.Add(this.button7, 1, 12);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.tableLayoutPanel3.Font = new System.Drawing.Font("Modern No. 20", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 85);
@@ -147,6 +149,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.793627F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(368, 659);
             this.tableLayoutPanel3.TabIndex = 1;
+            this.tableLayoutPanel3.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel3_Paint);
             // 
             // button1
             // 
@@ -225,6 +228,17 @@
             this.button6.UseVisualStyleBackColor = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
+            // button7
+            // 
+            this.button7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button7.Location = new System.Drawing.Point(16, 432);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(339, 67);
+            this.button7.TabIndex = 6;
+            this.button7.Text = "Report";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
             // EmployeedashBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -258,5 +272,6 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button7;
     }
 }

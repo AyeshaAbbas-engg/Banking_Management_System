@@ -397,7 +397,7 @@
             // 
             this.button6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.Location = new System.Drawing.Point(45, 24);
+            this.button6.Location = new System.Drawing.Point(44, 24);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(189, 38);
             this.button6.TabIndex = 0;

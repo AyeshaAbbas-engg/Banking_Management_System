@@ -84,5 +84,12 @@ namespace WindowsFormsApp1.UI
         {
             Application.Exit();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            HeadReport h = new HeadReport();
+            h.Show();
+        }
     }
 }

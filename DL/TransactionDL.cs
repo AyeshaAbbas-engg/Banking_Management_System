@@ -138,9 +138,10 @@ namespace WindowsFormsApp1.DL
         }
         public static bool IsReceiverValid(int receiverId)
         {
+            string q = receiverId.ToString();
             using (var con = DataBaseHelper.Instance.getConnection())
             {
-                string query = $"SELECT COUNT(*) FROM account WHERE AccountID = {receiverId} AND Status = 'Active'";
+                string query = $"SELECT COUNT(*) FROM account WHERE AccountNumber = '{q}' AND Status = 'Active'";
                 var cmd = new MySqlCommand(query, con);
                 int count = Convert.ToInt32(cmd.ExecuteScalar());
                 return count > 0;

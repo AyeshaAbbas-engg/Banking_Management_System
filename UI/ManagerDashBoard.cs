@@ -33,5 +33,12 @@ namespace WindowsFormsApp1.UI
             Employee employee = new Employee();
             employee.Show();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ManageComplai c = new ManageComplai();
+            c.Show();
+        }
     }
 }

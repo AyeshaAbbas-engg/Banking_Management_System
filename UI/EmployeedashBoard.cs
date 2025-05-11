@@ -77,5 +77,16 @@ namespace WindowsFormsApp1.UI
         {
             Application.Exit();
         }
+
+        private void tableLayoutPanel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            EmployeeReport employeeReport = new EmployeeReport();
+            employeeReport.Show();
+        }
     }
 }
