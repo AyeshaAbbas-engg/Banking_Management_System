@@ -49,10 +49,10 @@ namespace WindowsFormsApp1.UI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ViewChequeRequest viewChequeRequest = new ViewChequeRequest();
-            viewChequeRequest.ShowDialog();
-            this.Close();   
-            
+            this.Close();
+            EmployeedashBoard employeedashBoard = new EmployeedashBoard();
+            employeedashBoard.Show();
+
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -67,7 +67,12 @@ namespace WindowsFormsApp1.UI
                 MessageBox.Show("Please select both Requester and Account.");
                 return;
             }
-
+            int requestId = Convert.ToInt32(comboBox1.SelectedValue);
+            if (ChequeBL.IsChequeBookAlreadyIssued(requestId))
+            {
+                MessageBox.Show("Cheque book already issued to this requester.");
+                return;
+            }
             ChequeBL cb = new ChequeBL
             {
                 RequestID = Convert.ToInt32(comboBox1.SelectedValue),
@@ -82,6 +87,7 @@ namespace WindowsFormsApp1.UI
                 MessageBox.Show("Cheque Book issued successfully.");
             else
                 MessageBox.Show("Failed to issue Cheque Book.");
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

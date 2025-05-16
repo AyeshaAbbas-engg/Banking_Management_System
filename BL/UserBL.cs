@@ -10,13 +10,13 @@ using WindowsFormsApp1.Domain;
 using WindowsFormsApp1.DL;
 using System.Data;
 using System.Windows.Forms;
-
+using WindowsFormsApp1.Interfaces;
 namespace WindowsFormsApp1.BL
 {
-    public class UserBL
+    public class UserBL : IUserAuthServices
     {
 
-        public static User LogInSuccessful(string username, string password)
+        public  User LogInSuccessful(string username, string password)
         {
             DataRow row = UserDL.GetUser(username, password);
 

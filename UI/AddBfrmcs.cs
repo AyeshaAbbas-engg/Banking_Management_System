@@ -16,11 +16,16 @@ namespace WindowsFormsApp1.UI
     public partial class AddBfrmcs : Form
     {
         Branch b;
+        AddBranch bb;
         public const int Bankcode = 1;
-        public AddBfrmcs()
+        public AddBfrmcs(AddBranch b)
         {
             InitializeComponent();
             LoadStatus();
+            textBox2.MaxLength = 11;
+            this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
+            bb = b;
+           
         }
         private void AddBranch_Load(object sender, EventArgs e)
         {
@@ -34,9 +39,18 @@ namespace WindowsFormsApp1.UI
             DataTable dt = DataBaseHelper.Instance.ExecuteQuery(query);
             comboBox1.DataSource = dt;
             comboBox1.DisplayMember = "Value_";
-            comboBox1.ValueMember = "LookupID";
+            comboBox1.ValueMember = "Value_";
+        }
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Allow only digits and control keys (like backspace)
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
        
+
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
@@ -60,6 +74,31 @@ namespace WindowsFormsApp1.UI
                 MessageBox.Show("Please fill in all fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            string branchName = textBox1.Text.Trim();
+            string address = textBox2.Text.Trim();
+            string contact = textBox3.Text.Trim();
+            string statusID = comboBox1.SelectedValue.ToString();
+
+
+            // Check 1: Branch name must be unique 
+            string nameCheckQuery = $"SELECT COUNT(*) FROM branch WHERE BranchName = '{branchName}' ";
+            object nameCount = DataBaseHelper.Instance.ExecuteScalar(nameCheckQuery);
+            if (Convert.ToInt32(nameCount) > 0)
+            {
+                MessageBox.Show("Branch name already exists with status Active.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Check 2: Contact must be unique 
+            string contactCheckQuery = $"SELECT COUNT(*) FROM branch WHERE Contact = '{contact}' ";
+            object contactCount = DataBaseHelper.Instance.ExecuteScalar(contactCheckQuery);
+            if (Convert.ToInt32(contactCount) > 0)
+            {
+                MessageBox.Show("Contact number already exists for a branch where status NOT LIKE 'Deleted'", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+           
 
             try
             {
@@ -75,6 +114,7 @@ namespace WindowsFormsApp1.UI
                 if (success)
                 {
                     MessageBox.Show("Branch added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    bb.LoadBranches();
                     this.Close();
                 }
                 else

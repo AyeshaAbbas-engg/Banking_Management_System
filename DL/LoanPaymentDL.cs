@@ -14,7 +14,8 @@ namespace WindowsFormsApp1.DL
             string query = $@"
             SELECT AccountID, CONCAT('A/C# ', AccountNumber, ' (', AccountType, ')') AS DisplayName
             FROM account
-            WHERE CustomerID = {7} ";
+            WHERE CustomerID = {customerID
+            } ";
             DataTable dt = DataBaseHelper.Instance.ExecuteQuery(query);
             return dt;
         }
@@ -26,7 +27,7 @@ namespace WindowsFormsApp1.DL
         }
         public static string PayInstallment(int installmentID, int accountID, int performedBy, int receivedBy)
         {
-            // 1. Get installment details
+            // installment
             string query = $"SELECT LoanID, Amount, DueDate, Status FROM loaninstallments WHERE InstallmentID = {installmentID}";
             DataTable dt = DataBaseHelper.Instance.ExecuteQuery(query);
 
@@ -64,6 +65,9 @@ namespace WindowsFormsApp1.DL
         UPDATE loaninstallments SET Status = 'Paid' WHERE InstallmentID = {installmentID};
         
         UPDATE account SET Balance = Balance - {amount} WHERE AccountID = {accountID};
+        Update bankfund SET TotalAmount = TotalAmount + {amount} where FundID=2;
+
+
     ";
 
             int rowsAffected = DataBaseHelper.Instance.Update(updateQuery);

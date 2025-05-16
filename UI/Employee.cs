@@ -34,8 +34,8 @@ namespace WindowsFormsApp1.UI
         }
         public  void LoadActiveEmployees()
         {
-            string query = $"SELECT EmployeeID, Employee.Name, Employee.Email, Employee.Phone, Branch.BranchName , Employee.Status FROM Employee JOIN Branch ON Employee.BranchID = Branch.BranchID WHERE Employee.Status in ('Active' , 'Inactive');\r\n";
-
+            //string query = $"SELECT EmployeeID, Employee.Name, Employee.Email, Employee.Phone, Branch.BranchName , Employee.Status FROM Employee JOIN Branch ON Employee.BranchID = Branch.BranchID WHERE Employee.Status in ('Active' , 'Inactive');\r\n";
+            string query = "SELECT * FROM view_EmployeeWithBranchStatus";
             DataTable dt = DataBaseHelper.GetData(query);
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;  // fill the grid
             dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;

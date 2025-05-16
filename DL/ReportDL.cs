@@ -42,6 +42,11 @@ namespace WindowsFormsApp1.DL
             string query = $"SELECT \r\n    t.TransactionID,\r\n    sa.AccountNumber AS SenderAccount,\r\n    ra.AccountNumber AS ReceiverAccount,\r\n    t.Amount,\r\n        t.TransactionDate,\r\n    t.Status\r\nFROM Transactions t\r\nJOIN Account sa ON t.SenderAccountID = sa.AccountID\r\nJOIN Account ra ON t.ReceiverAccountID = ra.AccountID\r\nORDER BY t.TransactionDate DESC\r\nLIMIT 1;";
 ;
             return DataBaseHelper.Instance.ExecuteQuery(query);
+        }public static DataTable CustomerALLTrnasaction(int cid)
+        {
+            string query = $"SELECT    t.TransactionID,  sa.AccountNumber AS SenderAccount,     ra.AccountNumber AS ReceiverAccount, t.Amount, t.TransactionDate,    t.Status FROM Transactions t JOIN Account sa ON t.SenderAccountID = sa.AccountID JOIN Account ra ON t.ReceiverAccountID = ra.AccountID join customer c on sa.CustomerID= c.CustomerID where c.UserID= {cid}";
+;
+            return DataBaseHelper.Instance.ExecuteQuery(query);
         }
         public static DataTable ChequeTrnasaction()
         {
@@ -51,7 +56,7 @@ namespace WindowsFormsApp1.DL
         }
         public static DataTable Trnasactionhistory()
         {
-            string query = $"SELECT t.TransactionID, sa.AccountNumber AS Sender, ra.AccountNumber AS Receiver,\r\n       t.Amount, t.TransactionType, t.TransactionDate, t.Status\r\nFROM Transactions t\r\nJOIN account sa ON t.SenderAccountID = sa.AccountID\r\nJOIN account ra ON t.ReceiverAccountID = ra.AccountID\r\nORDER BY t.TransactionDate DESC;";
+            string query = $"SELECT t.TransactionID, sa.AccountNumber AS Sender, ra.AccountNumber AS Receiver,\r\n       t.Amount, t.TransactionDate, t.Status\r\nFROM Transactions t\r\nJOIN account sa ON t.SenderAccountID = sa.AccountID\r\nJOIN account ra ON t.ReceiverAccountID = ra.AccountID\r\nORDER BY t.TransactionDate DESC;";
             ;
             return DataBaseHelper.Instance.ExecuteQuery(query);
         } public static DataTable Accountbala()

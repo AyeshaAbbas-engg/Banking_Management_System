@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using WindowsFormsApp1.BL;
 using WindowsFormsApp1.Domain;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using WindowsFormsApp1.Interfaces;
 
 namespace WindowsFormsApp1.UI
 {
@@ -35,8 +37,9 @@ namespace WindowsFormsApp1.UI
                 MessageBox.Show("Please enter each field");
                 return;
             }
-            User user = UserBL.LogInSuccessful(Username,Password);
-            
+            IUserAuthServices authService = new UserBL();
+            User user = authService.LogInSuccessful(Username, Password);
+
 
             if (user != null)
             {

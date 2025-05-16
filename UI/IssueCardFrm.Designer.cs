@@ -44,12 +44,12 @@
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label7 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -159,6 +159,7 @@
             this.button1.TabIndex = 4;
             this.button1.Text = "<-- Go To Back";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -235,6 +236,7 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(320, 28);
             this.comboBox1.TabIndex = 6;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // comboBox2
             // 
@@ -265,6 +267,27 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(320, 26);
             this.textBox2.TabIndex = 11;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label7.Font = new System.Drawing.Font("Modern No. 20", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(63, 269);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(314, 36);
+            this.label7.TabIndex = 13;
+            this.label7.Text = "Enter Pin";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox3.Location = new System.Drawing.Point(426, 272);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(320, 26);
+            this.textBox3.TabIndex = 14;
+            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // flowLayoutPanel1
             // 
@@ -308,27 +331,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(201, 556);
             this.panel2.TabIndex = 6;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label7.Font = new System.Drawing.Font("Modern No. 20", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(63, 269);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(314, 36);
-            this.label7.TabIndex = 13;
-            this.label7.Text = "Enter Pin";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox3.Location = new System.Drawing.Point(426, 272);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(320, 26);
-            this.textBox3.TabIndex = 14;
-            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // IssueCardFrm
             // 

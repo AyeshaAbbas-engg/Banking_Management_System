@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Banking.AccountBl">
+      <HintPath>..\Banking.TransactionBL\bin\Debug\net8.0\Banking.AccountBl.dll</HintPath>
+    </Reference>
     <Reference Include="BCrypt.Net-Next, Version=4.0.3.0, Culture=neutral, PublicKeyToken=1e11be04b6288443, processorArchitecture=MSIL">
       <HintPath>packages\BCrypt.Net-Next.4.0.3\lib\net472\BCrypt.Net-Next.dll</HintPath>
     </Reference>
@@ -146,6 +149,7 @@
     <Compile Include="Domain\Manager.cs" />
     <Compile Include="Domain\User.cs" />
     <Compile Include="Interfaces\IBranchService.cs" />
+    <Compile Include="Interfaces\IUserAuthServices.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\Account.cs">
@@ -184,6 +188,12 @@
     <Compile Include="UI\AddingCard.Designer.cs">
       <DependentUpon>AddingCard.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\ALLtransactionCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ALLtransactionCustomer.Designer.cs">
+      <DependentUpon>ALLtransactionCustomer.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\AssignManager.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -207,6 +217,12 @@
     </Compile>
     <Compile Include="UI\BlockCredit.Designer.cs">
       <DependentUpon>BlockCredit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\BnakFundMangement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\BnakFundMangement.Designer.cs">
+      <DependentUpon>BnakFundMangement.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\BranchViewFrm.cs">
       <SubType>Form</SubType>
@@ -244,11 +260,29 @@
     <Compile Include="UI\CustomerDetails.Designer.cs">
       <DependentUpon>CustomerDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\CustomerLoan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\CustomerLoan.Designer.cs">
+      <DependentUpon>CustomerLoan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\CustomerLoanPayment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\CustomerLoanPayment.Designer.cs">
+      <DependentUpon>CustomerLoanPayment.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\CustomerReport.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\CustomerReport.Designer.cs">
       <DependentUpon>CustomerReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DepositFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\DepositFrm.Designer.cs">
+      <DependentUpon>DepositFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\EditBranch.cs">
       <SubType>Form</SubType>
@@ -328,11 +362,11 @@
     <Compile Include="UI\ManagerDashBoard.Designer.cs">
       <DependentUpon>ManagerDashBoard.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\RecordLeaveFrm.cs">
+    <Compile Include="UI\ManagerLoanApproval.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\RecordLeaveFrm.Designer.cs">
-      <DependentUpon>RecordLeaveFrm.cs</DependentUpon>
+    <Compile Include="UI\ManagerLoanApproval.Designer.cs">
+      <DependentUpon>ManagerLoanApproval.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\RemoveManager.cs">
       <SubType>Form</SubType>
@@ -410,6 +444,9 @@
     <EmbeddedResource Include="UI\AddingCard.resx">
       <DependentUpon>AddingCard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\ALLtransactionCustomer.resx">
+      <DependentUpon>ALLtransactionCustomer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\AssignManager.resx">
       <DependentUpon>AssignManager.cs</DependentUpon>
     </EmbeddedResource>
@@ -421,6 +458,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\BlockCredit.resx">
       <DependentUpon>BlockCredit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\BnakFundMangement.resx">
+      <DependentUpon>BnakFundMangement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\BranchViewFrm.resx">
       <DependentUpon>BranchViewFrm.cs</DependentUpon>
@@ -440,8 +480,17 @@
     <EmbeddedResource Include="UI\CustomerDetails.resx">
       <DependentUpon>CustomerDetails.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\CustomerLoan.resx">
+      <DependentUpon>CustomerLoan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\CustomerLoanPayment.resx">
+      <DependentUpon>CustomerLoanPayment.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\CustomerReport.resx">
       <DependentUpon>CustomerReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DepositFrm.resx">
+      <DependentUpon>DepositFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\EditBranch.resx">
       <DependentUpon>EditBranch.cs</DependentUpon>
@@ -482,8 +531,8 @@
     <EmbeddedResource Include="UI\ManagerDashBoard.resx">
       <DependentUpon>ManagerDashBoard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\RecordLeaveFrm.resx">
-      <DependentUpon>RecordLeaveFrm.cs</DependentUpon>
+    <EmbeddedResource Include="UI\ManagerLoanApproval.resx">
+      <DependentUpon>ManagerLoanApproval.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\RemoveManager.resx">
       <DependentUpon>RemoveManager.cs</DependentUpon>

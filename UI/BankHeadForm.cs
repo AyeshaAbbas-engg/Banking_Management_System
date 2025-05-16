@@ -82,7 +82,10 @@ namespace WindowsFormsApp1.UI
 
         private void button5_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Hide();
+            BnakFundMangement bnakFundMangement = new BnakFundMangement();
+            bnakFundMangement.Show();
+
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -90,6 +93,11 @@ namespace WindowsFormsApp1.UI
             this.Hide();
             HeadReport h = new HeadReport();
             h.Show();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

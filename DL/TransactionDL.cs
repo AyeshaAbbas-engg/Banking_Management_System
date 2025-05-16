@@ -39,7 +39,13 @@ namespace WindowsFormsApp1.DL
             // If no data found, assume it's not a current account or doesn't exist
             return false;
         }
-
+        public static int SearchCustomer(int receiverId)
+        {
+            string query = $"SELECT AccountID from account where AccountNumber = {receiverId}";
+            object Id = DataBaseHelper.Instance.ExecuteScalar(query);
+            int AccID = Convert.ToInt32(Id);
+            return AccID;
+        }
         public static bool InsertTransaction(int senderId, int receiverId, int fromBranchId, int toBranchId, decimal amount)
         {
             using (var con = DataBaseHelper.Instance.getConnection())
@@ -53,7 +59,7 @@ namespace WindowsFormsApp1.DL
                         throw new Exception("Amount must be greater than zero.");
 
                     // 1. Validate receiver exists and is active
-                    string checkReceiver = $"SELECT COUNT(*) FROM account WHERE AccountID = {receiverId} AND Status = 'Active'";
+                    string checkReceiver = $"SELECT COUNT(*) FROM account WHERE AccountNumber = {receiverId} AND Status = 'Active'";
                     var receiverCmd = new MySqlCommand(checkReceiver, con, trans);
                     int receiverCount = Convert.ToInt32(receiverCmd.ExecuteScalar());
                     if (receiverCount == 0)
@@ -80,7 +86,7 @@ namespace WindowsFormsApp1.DL
 
                     // 3. Get receiver account type
                     string receiverType = "";
-                    string receiverQuery = $"SELECT AccountType FROM account WHERE AccountID = {receiverId}";
+                    string receiverQuery = $"SELECT AccountType FROM account WHERE AccountNumber = {receiverId}";
                     var receiverTypeCmd = new MySqlCommand(receiverQuery, con, trans);
                     receiverType = receiverTypeCmd.ExecuteScalar()?.ToString();
                     if (string.IsNullOrEmpty(receiverType))
@@ -109,7 +115,7 @@ namespace WindowsFormsApp1.DL
                     new MySqlCommand(deduct, con, trans).ExecuteNonQuery();
 
                     // 7. Update receiver balance
-                    string add = $"UPDATE account SET Balance = Balance + {amount} WHERE AccountID = {receiverId}";
+                    string add = $"UPDATE account SET Balance = Balance + {amount} WHERE AccountNumber = {receiverId}";
                     new MySqlCommand(add, con, trans).ExecuteNonQuery();
 
                     // 8. Insert into transactions
@@ -117,7 +123,7 @@ namespace WindowsFormsApp1.DL
                     string insert = $@"
                         INSERT INTO transactions 
                         (SenderAccountID, ReceiverAccountID, FromBranchID, ToBranchID, Amount, Fee,Status)
-                        VALUES ({senderId}, {receiverId}, {fromBranchId}, {toBranchId}, {amount}, {fee},'Completed')";
+                        VALUES ({senderId}, {SearchCustomer(receiverId)}, {fromBranchId}, {toBranchId}, {amount}, {fee},'Completed')";
                     new MySqlCommand(insert, con, trans).ExecuteNonQuery();
 
                     trans.Commit();

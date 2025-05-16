@@ -23,7 +23,7 @@ namespace WindowsFormsApp1.UI
 
 
         }
-        private void LoadBranches()
+        public void LoadBranches()
         {
             DataTable dt = BranchBL.GetAllBranches();
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;  // fill the grid
@@ -49,6 +49,8 @@ namespace WindowsFormsApp1.UI
 
 
         }
+
+       
         private void AddBranch_Load(object sender, EventArgs e)
         {
 
@@ -68,7 +70,7 @@ namespace WindowsFormsApp1.UI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            AddBfrmcs addForm = new AddBfrmcs();
+            AddBfrmcs addForm = new AddBfrmcs(this);
             addForm.ShowDialog();
 
         }
@@ -85,9 +87,7 @@ namespace WindowsFormsApp1.UI
                 int branchID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["BranchID"].Value);
 
                 EditBranch editForm = new EditBranch(branchID);
-                editForm.ShowDialog(); // modal, blocks mainform until closed
-
-                // Optionally: reload data after editing
+                editForm.ShowDialog(); 
                 LoadBranches();
             }
             else

@@ -75,7 +75,9 @@ namespace WindowsFormsApp1.UI
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            IssueeCbookFrm issueeCbookFrm = new IssueeCbookFrm();
+            issueeCbookFrm.Show();
         }
 
         private void panel3_Paint(object sender, PaintEventArgs e)

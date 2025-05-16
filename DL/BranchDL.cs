@@ -45,7 +45,7 @@ namespace WindowsFormsApp1.DL
 
         public static DataTable GetAllBranches()
         {
-            string query = "SELECT * FROM Branch;";
+            string query = "SELECT * FROM Branch where Status not like 'Deleted';";
             return DataBaseHelper.Instance.ExecuteQuery(query);
         }
 

@@ -40,5 +40,17 @@ namespace WindowsFormsApp1.UI
             ManageComplai c = new ManageComplai();
             c.Show();
         }
+
+        private void tableLayoutPanel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ManagerLoanApproval managerLoanApproval = new ManagerLoanApproval();
+            managerLoanApproval.Show();
+        }
     }
 }

@@ -17,7 +17,8 @@ namespace WindowsFormsApp1.DL
         }
         public static bool ValidateCardPin(string cardNumber, string oldPin, int id)
         {
-            string query = $"SELECT COUNT(*) FROM CreditCards WHERE CardNumber = '{cardNumber}' AND pin = '{oldPin}' and AND AccountID IN (SELECT AccountID FROM Account WHERE UserID = {id}";
+            //string query = $"SELECT COUNT(*) FROM CreditCards WHERE CardNumber = '{cardNumber}' AND pin = '{oldPin}'  AND AccountID IN (SELECT AccountID FROM Account WHERE UserID = {id}";
+            string query = $"SELECT COUNT(*) FROM CreditCards WHERE CardNumber = '{cardNumber}' AND pin = '{oldPin}' and  AccountID IN (SELECT AccountID FROM Account join  customer on Account.CustomerID = customer.CustomerID WHERE UserID = {id})";
             object result = DataBaseHelper.Instance.ExecuteScalar(query);
             int count = Convert.ToInt32(result);
             return count == 1;
@@ -25,7 +26,8 @@ namespace WindowsFormsApp1.DL
 
         public static bool UpdateCardPin(string cardNumber, string newPin,int id)
         {
-            string query = $"UPDATE CreditCards SET pin = '{newPin}' WHERE CardNumber = '{cardNumber}' AND AccountID IN (SELECT AccountID FROM Account WHERE UserID = {id}";
+            //string query = $"UPDATE CreditCards SET pin = '{newPin}' WHERE CardNumber = '{cardNumber}' AND AccountID IN (SELECT AccountID FROM Account WHERE UserID = {id}";
+            string query = $"UPDATE CreditCards SET pin = '{newPin}' WHERE CardNumber = '{cardNumber}' AND AccountID IN (SELECT AccountID FROM Account join  customer on Account.CustomerID = customer.CustomerID WHERE UserID = {id})";
             int rowsAffected = DataBaseHelper.Instance.Update(query);
             return rowsAffected > 0;
         }public static void Block(int id)

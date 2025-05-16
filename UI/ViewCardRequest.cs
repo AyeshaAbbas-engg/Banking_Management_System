@@ -55,5 +55,12 @@ namespace WindowsFormsApp1.UI
         {
             this.Hide();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            IssueCardFrm issueCardFrm = new IssueCardFrm();
+            issueCardFrm.Show();
+        }
     }
 }

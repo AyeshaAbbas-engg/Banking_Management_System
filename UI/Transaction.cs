@@ -95,6 +95,7 @@ namespace WindowsFormsApp1.UI
                 int TobranchId = Convert.ToInt32(comboBoxb.SelectedValue);
                 int FrombranchId = Convert.ToInt32(comboBox4.SelectedValue);
                 decimal amount = Convert.ToInt32(textBox1.Text);
+                MessageBox.Show(receiverId.ToString());
 
                 bool success = TransactionBL.PerformTransaction(senderId, receiverId, TobranchId, FrombranchId, amount);
                 if (success)

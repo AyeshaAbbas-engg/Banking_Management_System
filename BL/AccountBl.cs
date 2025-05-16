@@ -18,7 +18,7 @@ namespace WindowsFormsApp1.BL
         public string AccountNumber { get; set; }
         public AccountBl()
         { }
-        public AccountBl(string accountType, decimal balance,   int branchID, int customerID, string accountNumber)
+        public AccountBl(string accountType, decimal balance, int branchID, int customerID, string accountNumber)
         {
 
             AccountType = accountType;
@@ -29,7 +29,7 @@ namespace WindowsFormsApp1.BL
             CustomerID = customerID;
             AccountNumber = accountNumber;
         }
-        public AccountBl(int accountID, string accountType, decimal balance,   int branchID,int customerID,string accountNumber)
+        public AccountBl(int accountID, string accountType, decimal balance, int branchID, int customerID, string accountNumber)
         {
             AccountID = accountID;
             AccountType = accountType;

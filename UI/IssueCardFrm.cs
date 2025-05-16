@@ -22,8 +22,11 @@ namespace WindowsFormsApp1.UI
         }
         private void LoadCustomer()
         {
-            string query = $"Select * from customer";
-       
+            string query = @"
+        SELECT c.Name, r.RequestID 
+        FROM servicerequests r
+        JOIN customer c ON r.CustomerID = c.CustomerID
+        WHERE r.Status = 'Active'"; // optional: filter only active requests
             DataTable dt = DataBaseHelper.Instance.ExecuteQuery(query);
 
             
@@ -43,7 +46,7 @@ namespace WindowsFormsApp1.UI
 
             // Example: bind to DataGridView
             comboBox1.DataSource = dt;
-            comboBox1.DisplayMember = "Name";
+            comboBox1.DisplayMember = "RequestID";
             comboBox1.ValueMember = "RequestID";
         }
         private void button2_Click(object sender, EventArgs e)
@@ -76,6 +79,18 @@ namespace WindowsFormsApp1.UI
         }
 
         private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            EmployeedashBoard employeedashBoard = new EmployeedashBoard();
+            employeedashBoard.Show();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

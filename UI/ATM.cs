@@ -222,5 +222,11 @@ namespace WindowsFormsApp1.UI
                 MessageBox.Show(ex.Message, "Withdrawal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            CustomerDashBoard customerDashBoard = new CustomerDashBoard(id);
+        }
     }
 }

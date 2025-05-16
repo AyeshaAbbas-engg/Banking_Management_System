@@ -75,6 +75,23 @@ namespace WindowsFormsApp1.UI
                 comboBox1.Text, 
                 branchID
             );
+            string nameCheckQuery = $"SELECT COUNT(*) FROM branch WHERE BranchName = '{textBox1.Text}' and BranchID<>{branchID} ";
+            object nameCount = DataBaseHelper.Instance.ExecuteScalar(nameCheckQuery);
+            if (Convert.ToInt32(nameCount) > 0)
+            {
+                MessageBox.Show("Branch name already exists with status Active.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            
+            string contactCheckQuery = $"SELECT COUNT(*) FROM branch WHERE Contact = '{textBox2.Text}'  and BranchID<>{branchID} ";
+            object contactCount = DataBaseHelper.Instance.ExecuteScalar(contactCheckQuery);
+            if (Convert.ToInt32(contactCount) > 0)
+            {
+                MessageBox.Show("Contact number already exists for a branch where status NOT LIKE 'Deleted'", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            
 
             string query = $"UPDATE Branch SET " +
                 $"BranchName = '{textBox1.Text}', " +

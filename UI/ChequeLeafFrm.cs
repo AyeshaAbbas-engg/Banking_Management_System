@@ -14,14 +14,15 @@ namespace WindowsFormsApp1.UI
 {
     public partial class ChequeLeafFrm : Form
     {
+        public static ChequeLeafFrm instance;
         public ChequeLeafFrm()
         {
             InitializeComponent();
             LoadCheque();
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
-
+            instance = this;
         }
-
+      
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {try
             {
@@ -29,7 +30,8 @@ namespace WindowsFormsApp1.UI
                 {
 
                     int chequeBookID = Convert.ToInt32(comboBox1.SelectedValue);
-                    int availableLeaves = new AddChequeLeafDL().GetAvailableLeavesCount(chequeBookID);
+                    int availableLeaves = AddChequeLeafDL.GetAvailableLeavesCount(chequeBookID);
+
 
                     MessageBox.Show($"There are {availableLeaves} available leaves in ChequeBook ID {chequeBookID}.",
                                 "Leaf Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -45,7 +47,7 @@ namespace WindowsFormsApp1.UI
 
         private void LoadCheque()
         {
-            string query = $"select * from ChequeBooks";
+            string query = $"select * from ChequeBooks where Status = 'Issued'";
             DataTable dt = DataBaseHelper.Instance.ExecuteQuery(query);
             comboBox1.DataSource = dt;
             comboBox1.DisplayMember = "ChequeBookID";
@@ -64,6 +66,15 @@ namespace WindowsFormsApp1.UI
             };
 
             bool success = AddChequeLeafDL.AddChequeLeaf(leaf);
+            int chequeBookID = leaf.ChequeBookID;
+            int remainingLeaves = AddChequeLeafDL.GetAvailableLeavesCount(chequeBookID);
+
+            if (remainingLeaves <= 0)
+            {
+                // Fully used ho chuki hai, update status
+                AddChequeLeafDL.MarkChequeBookAsUsed(chequeBookID);
+            }
+
 
             if (success)
             {
@@ -74,6 +85,13 @@ namespace WindowsFormsApp1.UI
             {
                 MessageBox.Show("Failed to issue cheque leaf.");
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            EmployeedashBoard employeeDashBoard = new EmployeedashBoard();
+            employeeDashBoard.Show();
+            this.Hide();
         }
     }
 }

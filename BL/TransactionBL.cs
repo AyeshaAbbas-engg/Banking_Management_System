@@ -39,7 +39,7 @@ namespace WindowsFormsApp1.BL
                 throw new Exception("Amount must be greater than zero.");
 
             // Check if receiver account is valid and active
-            if (TransactionDL.IsReceiverValid(receiverId))
+            if (!TransactionDL.IsReceiverValid(receiverId))
                 throw new Exception("Receiver account is invalid or inactive.");
             if (TransactionDL.HasExceededOverdraftLimit(senderId, amount))
                 throw new Exception("OverDraft Limit has been exceeded");

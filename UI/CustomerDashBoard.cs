@@ -13,6 +13,7 @@ namespace WindowsFormsApp1.UI
     public partial class CustomerDashBoard : Form
     {
         int id;
+        public int customerID;
         public CustomerDashBoard(int id)
         {
             InitializeComponent();
@@ -62,6 +63,46 @@ namespace WindowsFormsApp1.UI
             this.Hide();
             AddingCard addingCard= new AddingCard(id);
             addingCard.Show();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            ALLtransactionCustomer allTransactionCustomer = new ALLtransactionCustomer(id);
+            allTransactionCustomer.Show();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            customerID = GetCustomerID(id);
+            CustomerLoan customerLoan = new CustomerLoan(customerID);
+            customerLoan.Show();
+        }
+        public static int GetCustomerID(int id)
+        {
+            string query = $@"
+            SELECT CustomerID
+            FROM customer
+            WHERE UserID = {id}";
+            
+            DataTable dt = DataBaseHelper.Instance.ExecuteQuery(query);
+            if (dt.Rows.Count > 0)
+            {
+                return Convert.ToInt32(dt.Rows[0]["CustomerID"]);
+            }
+            else
+            {
+                return -1; // or handle the case when no customer is found
+            }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            customerID = GetCustomerID(id);
+            CustomerLoanPayment customerLoanPayment = new CustomerLoanPayment(customerID);
+            customerLoanPayment.Show();
         }
     }
 }
