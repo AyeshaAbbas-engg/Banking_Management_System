@@ -30,7 +30,6 @@ namespace WindowsFormsApp1.BL
             string pass = password;
             string role = row["Value_"].ToString();
            
-            MessageBox.Show(id.ToString());
             if (role == "Head")
                 return new Head(id);
             else if (role == "Manager")

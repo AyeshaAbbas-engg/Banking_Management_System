@@ -52,5 +52,10 @@ namespace WindowsFormsApp1.UI
             ManagerLoanApproval managerLoanApproval = new ManagerLoanApproval();
             managerLoanApproval.Show();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

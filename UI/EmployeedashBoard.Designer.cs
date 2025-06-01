@@ -234,13 +234,15 @@
             // 
             // button7
             // 
+            this.button7.BackColor = System.Drawing.Color.SaddleBrown;
             this.button7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button7.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button7.Location = new System.Drawing.Point(16, 445);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(339, 69);
             this.button7.TabIndex = 6;
             this.button7.Text = "Report";
-            this.button7.UseVisualStyleBackColor = true;
+            this.button7.UseVisualStyleBackColor = false;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // button8

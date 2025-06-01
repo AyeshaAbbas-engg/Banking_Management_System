@@ -241,7 +241,7 @@
             this.tableLayoutPanel5.ColumnCount = 3;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.80556F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 88.19444F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel5.Controls.Add(this.button2, 1, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(235, 477);
@@ -259,7 +259,7 @@
             this.button2.ForeColor = System.Drawing.Color.Honeydew;
             this.button2.Location = new System.Drawing.Point(29, 3);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(192, 88);
+            this.button2.Size = new System.Drawing.Size(191, 88);
             this.button2.TabIndex = 0;
             this.button2.Text = "BACK";
             this.button2.UseVisualStyleBackColor = false;
